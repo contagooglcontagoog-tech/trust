@@ -213,46 +213,46 @@ html,body{height:100%;background:#000;font-family:-apple-system,BlinkMacSystemFo
 .ov-star{width:36px;height:36px;display:flex;align-items:center;justify-content:center;cursor:pointer;}
 .ov-hero{display:flex;align-items:center;justify-content:space-between;padding:8px 16px 12px;flex-shrink:0;}
 .ov-hero-l{display:flex;align-items:center;gap:12px;}
-.ov-logo{width:48px;height:48px;border-radius:50%;overflow:hidden;background:var(--bg3);flex-shrink:0;display:flex;align-items:center;justify-content:center;}
-.ov-logo img{width:100%;height:100%;object-fit:cover;}
-.ov-sym{font-size:20px;font-weight:800;color:#fff;}
-.ov-fullname{font-size:13px;color:var(--txt2);margin-top:2px;}
-.ov-price{font-size:22px;font-weight:700;color:#fff;text-align:right;}
-.ov-chg-up{font-size:13px;font-weight:600;color:var(--green);text-align:right;margin-top:3px;}
-.ov-chg-dn{font-size:13px;font-weight:600;color:var(--red);text-align:right;margin-top:3px;}
+.ov-logo{width:52px;height:52px;border-radius:50%;overflow:hidden;background:var(--bg3);flex-shrink:0;display:flex;align-items:center;justify-content:center;}
+.ov-logo img,.ov-logo svg{width:52px;height:52px;border-radius:50%;}
+.ov-sym{font-size:22px;font-weight:800;color:#fff;}
+.ov-fullname{font-size:14px;color:var(--txt2);margin-top:3px;}
+.ov-price{font-size:26px;font-weight:700;color:#fff;text-align:right;}
+.ov-chg-up{font-size:14px;font-weight:600;color:var(--green);text-align:right;margin-top:4px;}
+.ov-chg-dn{font-size:14px;font-weight:600;color:var(--red);text-align:right;margin-top:4px;}
 .ov-chart-wrap{width:100%;flex-shrink:0;overflow:hidden;}
-.ov-tf{display:flex;align-items:center;justify-content:space-around;padding:10px 8px;flex-shrink:0;}
-.ov-tf-btn{font-size:14px;font-weight:500;color:var(--txt2);padding:6px 10px;border-radius:20px;cursor:pointer;}
-.ov-tf-btn.on{background:var(--bg3);color:#fff;font-weight:700;}
+.ov-tf{display:flex;align-items:center;justify-content:space-around;padding:14px 8px;flex-shrink:0;}
+.ov-tf-btn{font-size:14px;font-weight:500;color:var(--txt2);padding:7px 12px;border-radius:20px;cursor:pointer;-webkit-tap-highlight-color:transparent;}
+.ov-tf-btn.on{background:#2a2a2a;color:#fff;font-weight:700;}
 .ov-scroll{flex:1;overflow-y:auto;-webkit-overflow-scrolling:touch;}
 .ov-scroll::-webkit-scrollbar{display:none;}
-.ov-bal-row{display:flex;align-items:center;justify-content:space-between;padding:16px 16px 4px;}
-.ov-bal-lbl{font-size:17px;font-weight:700;color:#fff;}
+.ov-bal-row{display:flex;align-items:flex-start;justify-content:space-between;padding:20px 16px 6px;}
+.ov-bal-lbl{font-size:18px;font-weight:700;color:#fff;}
 .ov-bal-r{text-align:right;}
-.ov-bal-usd{font-size:17px;font-weight:700;color:#fff;}
-.ov-bal-amt{font-size:12px;color:var(--txt2);margin-top:2px;}
-.ov-action-row{display:flex;gap:12px;padding:12px 16px;}
-.ov-action{flex:1;height:52px;background:var(--bg3);border-radius:14px;display:flex;align-items:center;justify-content:center;gap:8px;cursor:pointer;font-size:15px;font-weight:600;color:#fff;}
-.ov-hist-row{display:flex;align-items:center;padding:20px 16px 4px;cursor:pointer;}
-.ov-hist-lbl{font-size:16px;font-weight:700;color:#fff;}
-.ov-missing{text-align:center;padding:10px 16px 24px;font-size:13px;color:var(--txt2);}
+.ov-bal-usd{font-size:18px;font-weight:700;color:#fff;}
+.ov-bal-amt{font-size:13px;color:var(--txt2);margin-top:4px;}
+.ov-action-row{display:flex;gap:14px;padding:14px 16px;}
+.ov-action{flex:1;height:54px;background:#2a2a2a;border-radius:30px;display:flex;align-items:center;justify-content:center;gap:8px;cursor:pointer;font-size:16px;font-weight:600;color:#fff;}
+.ov-hist-row{display:flex;align-items:center;padding:22px 16px 6px;cursor:pointer;}
+.ov-hist-lbl{font-size:17px;font-weight:700;color:#fff;}
+.ov-missing{text-align:center;padding:10px 16px 28px;font-size:14px;color:var(--txt2);}
 .ov-missing span{color:var(--green);font-weight:600;cursor:pointer;}
-.ov-stats-hdr{font-size:18px;font-weight:700;color:#fff;padding:20px 16px 12px;}
+.ov-stats-hdr{font-size:19px;font-weight:700;color:#fff;padding:24px 16px 14px;}
 .ov-stats-grid{display:grid;grid-template-columns:1fr 1fr;padding:0 16px;}
-.ov-stat{padding:10px 0;border-bottom:1px solid var(--border);}
-.ov-stat-l{font-size:12px;color:var(--txt2);margin-bottom:4px;}
+.ov-stat{padding:13px 0;border-bottom:1px solid #222;}
+.ov-stat-l{font-size:12px;color:var(--txt2);margin-bottom:6px;}
 .ov-stat-v{font-size:15px;font-weight:600;color:#fff;}
-.ov-stat-risk{color:var(--green);font-size:14px;font-weight:500;}
-.ov-sobre-hdr{font-size:18px;font-weight:700;color:#fff;padding:20px 16px 12px;}
-.ov-sobre-chips{display:flex;flex-wrap:wrap;gap:8px;padding:0 16px 20px;}
-.ov-chip{display:flex;align-items:center;gap:6px;border:1.5px solid var(--bg3);border-radius:20px;padding:9px 16px;font-size:13px;font-weight:500;color:#fff;cursor:pointer;}
-.ov-ticker-wrap{overflow:hidden;flex-shrink:0;padding:6px 0;border-top:1px solid var(--border);}
+.ov-stat-risk{color:var(--green);font-size:15px;font-weight:600;}
+.ov-sobre-hdr{font-size:19px;font-weight:700;color:#fff;padding:24px 16px 14px;}
+.ov-sobre-chips{display:flex;flex-wrap:wrap;gap:10px;padding:0 16px 24px;}
+.ov-chip{display:flex;align-items:center;gap:7px;border:1.5px solid #333;border-radius:20px;padding:10px 18px;font-size:14px;font-weight:500;color:#fff;cursor:pointer;}
+.ov-ticker-wrap{overflow:hidden;flex-shrink:0;padding:8px 0;border-top:1px solid #222;}
 .ov-ticker{display:inline-flex;gap:40px;white-space:nowrap;animation:ov-scroll 22s linear infinite;}
 @keyframes ov-scroll{from{transform:translateX(0);}to{transform:translateX(-50%);}}
 .ov-ticker-buy{font-size:12px;color:var(--green);}
 .ov-ticker-sell{font-size:12px;color:var(--red);}
-.ov-trade-btn{margin:8px 16px 12px;background:var(--green);border-radius:30px;height:56px;display:flex;align-items:center;justify-content:center;gap:8px;cursor:pointer;flex-shrink:0;}
-.ov-trade-t{font-size:17px;font-weight:700;color:#000;}
+.ov-trade-btn{margin:10px 16px 16px;background:var(--green);border-radius:40px;height:60px;display:flex;align-items:center;justify-content:center;gap:10px;cursor:pointer;flex-shrink:0;}
+.ov-trade-t{font-size:18px;font-weight:700;color:#000;}
 /* HISTORY OVERLAY */
 .hist-ov{position:absolute;top:0;left:0;width:100%;height:100%;transform:translateX(101%);background:var(--bg);z-index:101;display:flex;flex-direction:column;transition:transform .32s cubic-bezier(.4,0,.2,1);}
 .hist-ov.open{transform:translateX(0);}
@@ -710,55 +710,60 @@ function nk(k){
   setInterval(function(){go((cur+1)%total);},4000);
 })();
 
+// ─── INLINE LOGOS ─────────────────────────────────────────────────
+var tokLogos={
+  sol:'<svg viewBox="0 0 52 52" width="52" height="52"><circle cx="26" cy="26" r="26" fill="#9945FF"/><path d="M13 33.5 L37 33.5 L32 38.5 L13 38.5Z" fill="white"/><path d="M13 24 L37 24 L32 29 L13 29Z" fill="white" opacity="0.85"/><path d="M13 14.5 L32 14.5 L37 19.5 L13 19.5Z" fill="white"/></svg>',
+  usdc:'<svg viewBox="0 0 52 52" width="52" height="52"><circle cx="26" cy="26" r="26" fill="#2775CA"/><circle cx="26" cy="26" r="18" fill="none" stroke="white" stroke-width="2" opacity="0.4"/><text x="26" y="33" text-anchor="middle" fill="white" font-size="22" font-weight="700" font-family="Arial,sans-serif">$</text></svg>',
+  eth:'<svg viewBox="0 0 52 52" width="52" height="52"><defs><linearGradient id="eg" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#8A92B2"/><stop offset="100%" stop-color="#62688F"/></linearGradient></defs><circle cx="26" cy="26" r="26" fill="url(#eg)"/><path d="M26 9 L35 25 L26 30.5 L17 25Z" fill="white" opacity="0.9"/><path d="M26 33 L35 28 L26 43 L17 28Z" fill="white"/></svg>',
+  bnb:'<svg viewBox="0 0 52 52" width="52" height="52"><circle cx="26" cy="26" r="26" fill="#F3BA2F"/><path d="M26 14 L30 18 L26 22 L22 18Z" fill="white"/><path d="M18 22 L22 18 L26 22 L22 26Z" fill="white"/><path d="M34 22 L38 26 L34 30 L30 26Z" fill="white"/><path d="M18 26 L22 30 L18 34 L14 30Z" fill="white"/><path d="M26 22 L34 30 L26 38 L18 30Z" fill="white"/><path d="M26 38 L30 34 L26 30 L22 34Z" fill="white"/></svg>'
+};
+
 // ─── TOKEN DATA ───────────────────────────────────────────────────
 var tokData={
   sol:{sym:'SOL',name:'Solana',chain:'Solana',
-    logo:'https://assets-cdn.trustwallet.com/blockchains/solana/info/logo.png',
     price:'$165,02',chg:'+$3,45 (2,14%)',chgPos:true,
     balUSD:'$ 465,00',balAmt:'2,8182 SOL',
     cap:'$84,72B',vol:'$3,12B',holders:'-',created:'mar. de 2020',
     supply:'514,23M (100,00%)',security:'Nenhum risco encontrado.',
     liquidity:'$1,24B',top10pct:'-',top10buy:'-',top10sell:'-',
     chartColor:'#49E66B',
-    chartPath:'M0,105 C20,100 40,112 60,107 C80,102 100,88 120,84 C145,79 165,72 185,65 C205,58 225,63 250,52 C270,43 295,38 315,32 C338,25 360,20 385,16 C405,13 420,12 430,11',
+    chartPath:'M0,145 L25,138 L50,148 L75,132 L100,120 L125,108 L150,95 L175,85 L200,78 L225,68 L250,58 L275,50 L300,42 L325,35 L350,28 L375,22 L400,16 L420,12 L430,10',
     ticker:['0xd8...1b26 comprado $1,03 SOL ↗','0xa3...f221 comprado $0,85 SOL ↗','0x9b...44cc vendido $2,10 SOL ↘','0xe1...77ab comprado $1,40 SOL ↗']},
   usdc:{sym:'USDC',name:'USD Coin',chain:'Solana',
-    logo:'https://assets-cdn.trustwallet.com/blockchains/ethereum/assets/0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48/logo.png',
     price:'$1,00',chg:'+$0,00 (0,01%)',chgPos:true,
     balUSD:'$ 68,00',balAmt:'68,00 USDC',
     cap:'$60,45B',vol:'$7,13B',holders:'-',created:'set. de 2018',
     supply:'60,45B (100,00%)',security:'Nenhum risco encontrado.',
     liquidity:'$8,92B',top10pct:'-',top10buy:'-',top10sell:'-',
     chartColor:'#49E66B',
-    chartPath:'M0,80 C60,77 120,83 180,80 C240,77 300,82 360,79 C395,77 415,80 430,79',
+    chartPath:'M0,100 L60,97 L120,103 L180,99 L240,102 L300,98 L360,101 L430,100',
     ticker:['0x5c...8b01 comprado $120,00 USDC ↗','0x7f...3de2 comprado $500,00 USDC ↗','0x2a...cc99 vendido $80,00 USDC ↘','0x8e...1122 comprado $250,00 USDC ↗']},
   eth:{sym:'ETH',name:'Ethereum',chain:'Ethereum',
-    logo:'https://assets-cdn.trustwallet.com/blockchains/ethereum/info/logo.png',
     price:'$1.766,21',chg:'-$224,63 (11,3%)',chgPos:false,
     balUSD:'$ 0,15',balAmt:'0,00009 ETH',
     cap:'$213,31B',vol:'$12,69B',holders:'-',created:'11 de set. de 2024',
     supply:'120,68M (100,00%)',security:'Nenhum risco encontrado.',
     liquidity:'$162,85M',top10pct:'-',top10buy:'-',top10sell:'-',
     chartColor:'#F44747',
-    chartPath:'M0,48 C25,52 48,50 68,62 C90,75 110,92 135,120 C155,140 175,154 198,150 C220,146 240,130 262,114 C282,99 302,90 325,80 C348,70 372,62 400,57 C415,54 425,52 430,50',
+    chartPath:'M0,90 L15,82 L30,96 L45,80 L60,92 L75,78 L90,94 L105,108 L118,122 L126,142 L132,160 L138,148 L144,122 L150,96 L158,80 L168,90 L178,72 L190,82 L202,62 L214,74 L226,54 L238,66 L250,46 L262,58 L274,42 L286,54 L298,38 L312,50 L324,36 L336,48 L350,40 L364,52 L378,44 L394,50 L410,44 L430,46',
     ticker:['0xd8...1b26 comprado $1,03 ETH ↗','0x78...e0b6 vendido $7,33 ETH ↘','0xa1...cc34 comprado $0,55 ETH ↗','0x3b...ff01 vendido $2,10 ETH ↘']},
   bnb:{sym:'BNB',name:'BNB',chain:'BNB Smart Chain',
-    logo:'https://assets-cdn.trustwallet.com/blockchains/binance/info/logo.png',
     price:'$599,38',chg:'+$12,30 (2,10%)',chgPos:true,
     balUSD:'$ 0,00',balAmt:'0 BNB',
     cap:'$88,74B',vol:'$1,23B',holders:'-',created:'jul. de 2017',
     supply:'144,83M (100,00%)',security:'Nenhum risco encontrado.',
     liquidity:'$2,45B',top10pct:'-',top10buy:'-',top10sell:'-',
     chartColor:'#49E66B',
-    chartPath:'M0,52 C40,54 80,60 120,66 C165,73 205,78 248,82 C288,86 330,87 375,86 C400,85 418,84 430,83',
+    chartPath:'M0,70 L40,72 L80,78 L110,85 L140,90 L170,95 L200,98 L230,102 L260,104 L290,106 L320,107 L360,106 L400,105 L430,104',
     ticker:['0x33...aa12 comprado $1,50 BNB ↗','0x55...bb44 vendido $3,20 BNB ↘','0xc7...9900 comprado $5,00 BNB ↗','0xde...5521 vendido $0,80 BNB ↘']}
 };
 
 // ─── TOKEN OVERLAY ────────────────────────────────────────────────
 function openToken(id){
+  curTok=id;
   var d=tokData[id];
-  var img=document.getElementById('ov-logo-img');
-  img.src=d.logo; img.alt=d.sym;
+  // Logo inline SVG
+  document.getElementById('ov-logo').innerHTML=tokLogos[id]||'';
   document.getElementById('ov-sym').textContent=d.sym;
   document.getElementById('ov-fullname').textContent=d.name;
   document.getElementById('ov-price').textContent=d.price;
@@ -766,12 +771,14 @@ function openToken(id){
   ce.textContent=d.chg; ce.className=d.chgPos?'ov-chg-up':'ov-chg-dn';
   document.getElementById('ov-bal-usd').textContent=d.balUSD;
   document.getElementById('ov-bal-amt').textContent=d.balAmt;
-  // Chart
+  // Chart (200px viewBox)
   var c=document.getElementById('ov-chart');
   var col=d.chartColor;
-  c.innerHTML='<defs><linearGradient id="cg" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="'+col+'" stop-opacity="0.25"/><stop offset="100%" stop-color="'+col+'" stop-opacity="0"/></linearGradient></defs>'
-    +'<path d="'+d.chartPath+' L430,160 L0,160 Z" fill="url(#cg)"/>'
-    +'<path d="'+d.chartPath+'" fill="none" stroke="'+col+'" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>';
+  c.setAttribute('viewBox','0 0 430 200');
+  c.setAttribute('height','200');
+  c.innerHTML='<defs><linearGradient id="cg" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="'+col+'" stop-opacity="0.3"/><stop offset="100%" stop-color="'+col+'" stop-opacity="0"/></linearGradient></defs>'
+    +'<path d="'+d.chartPath+' L430,200 L0,200 Z" fill="url(#cg)"/>'
+    +'<path d="'+d.chartPath+'" fill="none" stroke="'+col+'" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>';
   // Stats
   var rows=[
     ['Cap. de mercado',d.cap],['Volume em 24h',d.vol],
@@ -825,7 +832,7 @@ function setTf(el){
   </div>
   <div class="ov-hero">
     <div class="ov-hero-l">
-      <div class="ov-logo"><img id="ov-logo-img" src="" alt="" onerror="this.style.display='none'"/></div>
+      <div class="ov-logo" id="ov-logo"></div>
       <div>
         <div class="ov-sym" id="ov-sym"></div>
         <div class="ov-fullname" id="ov-fullname"></div>
@@ -837,7 +844,7 @@ function setTf(el){
     </div>
   </div>
   <div class="ov-chart-wrap">
-    <svg id="ov-chart" width="430" height="160" viewBox="0 0 430 160" preserveAspectRatio="none" style="width:100%;display:block;"></svg>
+    <svg id="ov-chart" width="430" height="200" viewBox="0 0 430 200" preserveAspectRatio="none" style="width:100%;display:block;"></svg>
   </div>
   <div class="ov-tf">
     <div class="ov-tf-btn" onclick="setTf(this)">LIVE</div>
