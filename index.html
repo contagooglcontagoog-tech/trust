@@ -1,0 +1,573 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>Trust Wallet</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #ffffff;
+      --bg2: #f7f8fa;
+      --bg3: #f0f2f5;
+      --text1: #141414;
+      --text2: #6b7280;
+      --text3: #9ca3af;
+      --border: #f0f0f0;
+      --blue: #3375bb;
+      --blue-light: #eef4ff;
+      --green: #16c784;
+      --red: #ea3943;
+      --radius: 16px;
+    }
+
+    html, body {
+      height: 100%;
+      background: var(--bg2);
+      font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .app {
+      max-width: 430px;
+      margin: 0 auto;
+      min-height: 100vh;
+      background: var(--bg);
+      display: flex;
+      flex-direction: column;
+      position: relative;
+    }
+
+    /* ── TOPBAR ── */
+    .topbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 16px 20px 12px;
+      background: var(--bg);
+    }
+
+    .avatar {
+      width: 38px; height: 38px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #3375bb, #6bccf7);
+      display: flex; align-items: center; justify-content: center;
+      color: #fff; font-weight: 700; font-size: 15px;
+      cursor: pointer; flex-shrink: 0;
+    }
+
+    .topbar-center { text-align: center; }
+    .wallet-name { font-size: 15px; font-weight: 700; color: var(--text1); line-height: 1.2; }
+    .wallet-addr {
+      font-size: 11px; color: var(--text2); margin-top: 2px;
+      display: flex; align-items: center; justify-content: center; gap: 4px;
+    }
+
+    .icon-btn {
+      width: 38px; height: 38px;
+      border-radius: 50%; background: var(--bg3);
+      display: flex; align-items: center; justify-content: center;
+      cursor: pointer; border: none; background: var(--bg3);
+      position: relative; flex-shrink: 0;
+    }
+    .notif-dot {
+      width: 8px; height: 8px;
+      background: var(--blue); border-radius: 50%;
+      position: absolute; top: 5px; right: 5px;
+      border: 2px solid var(--bg);
+    }
+
+    /* ── BALANCE ── */
+    .balance-section {
+      text-align: center;
+      padding: 8px 20px 20px;
+    }
+    .balance-label {
+      font-size: 12px; color: var(--text2); margin-bottom: 6px;
+      display: flex; align-items: center; justify-content: center; gap: 4px;
+    }
+    .balance-amount {
+      font-size: 38px; font-weight: 800; color: var(--text1);
+      letter-spacing: -1px; line-height: 1;
+    }
+    .balance-sub {
+      font-size: 13px; color: var(--text2); margin-top: 6px;
+    }
+    .balance-change {
+      display: inline-flex; align-items: center; gap: 3px;
+      font-size: 13px; font-weight: 600; color: var(--green);
+    }
+
+    /* ── ACTIONS ── */
+    .actions {
+      display: flex;
+      justify-content: space-around;
+      padding: 0 12px 24px;
+    }
+    .action-btn {
+      display: flex; flex-direction: column;
+      align-items: center; gap: 8px;
+      cursor: pointer; flex: 1;
+    }
+    .action-icon {
+      width: 52px; height: 52px;
+      border-radius: 50%;
+      background: var(--blue-light);
+      display: flex; align-items: center; justify-content: center;
+    }
+    .action-label { font-size: 12px; font-weight: 600; color: var(--text1); }
+
+    /* ── TABS ── */
+    .tabs {
+      display: flex;
+      border-bottom: 1.5px solid var(--border);
+      padding: 0 20px;
+      gap: 4px;
+    }
+    .tab {
+      flex: 1; text-align: center;
+      padding: 12px 0;
+      font-size: 14px; font-weight: 600;
+      color: var(--text2);
+      cursor: pointer;
+      border-bottom: 2.5px solid transparent;
+      margin-bottom: -1.5px;
+      transition: color 0.15s, border-color 0.15s;
+    }
+    .tab.active { color: var(--blue); border-bottom-color: var(--blue); }
+
+    /* ── TOKEN LIST ── */
+    .token-list {
+      flex: 1;
+      overflow-y: auto;
+      -webkit-overflow-scrolling: touch;
+    }
+    .token-list::-webkit-scrollbar { display: none; }
+
+    .section-label {
+      font-size: 11px; font-weight: 700;
+      color: var(--text3); text-transform: uppercase;
+      letter-spacing: 0.8px;
+      padding: 16px 20px 8px;
+    }
+
+    .token-item {
+      display: flex; align-items: center;
+      padding: 12px 20px;
+      cursor: pointer;
+      transition: background 0.12s;
+      -webkit-tap-highlight-color: transparent;
+    }
+    .token-item:active { background: var(--bg2); }
+
+    .token-logo {
+      width: 44px; height: 44px;
+      border-radius: 50%;
+      margin-right: 14px;
+      flex-shrink: 0;
+      display: flex; align-items: center; justify-content: center;
+      font-weight: 800; font-size: 15px; color: #fff;
+      position: relative;
+    }
+    .token-chain-badge {
+      position: absolute; bottom: -2px; right: -2px;
+      width: 16px; height: 16px;
+      border-radius: 50%;
+      border: 2px solid var(--bg);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 7px; font-weight: 800; color: #fff;
+    }
+
+    .token-info { flex: 1; min-width: 0; }
+    .token-name { font-size: 15px; font-weight: 700; color: var(--text1); }
+    .token-qty  { font-size: 12px; color: var(--text2); margin-top: 2px; }
+
+    .token-values { text-align: right; }
+    .token-usd    { font-size: 15px; font-weight: 700; color: var(--text1); }
+    .token-change { font-size: 12px; font-weight: 600; margin-top: 2px; }
+    .up   { color: var(--green); }
+    .down { color: var(--red); }
+    .flat { color: var(--text3); }
+
+    /* ── DIVIDER ── */
+    .divider { height: 1px; background: var(--border); margin: 0 20px; }
+
+    /* ── EMPTY STATE ── */
+    .empty {
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      padding: 60px 20px;
+      gap: 12px;
+    }
+    .empty-title { font-size: 15px; font-weight: 700; color: var(--text2); }
+    .empty-sub   { font-size: 13px; color: var(--text3); text-align: center; }
+
+    /* ── DEFI CARDS ── */
+    .defi-card {
+      margin: 8px 20px;
+      background: var(--bg2);
+      border-radius: 14px;
+      padding: 16px;
+    }
+    .defi-protocol { font-size: 12px; color: var(--text2); margin-bottom: 4px; }
+    .defi-amount   { font-size: 18px; font-weight: 800; color: var(--text1); }
+    .defi-apy      { font-size: 12px; font-weight: 600; color: var(--green); margin-top: 3px; }
+
+    /* ── BOTTOM NAV ── */
+    .bottom-nav {
+      display: flex;
+      border-top: 1.5px solid var(--border);
+      background: var(--bg);
+      padding: 8px 0;
+      padding-bottom: env(safe-area-inset-bottom, 8px);
+    }
+    .nav-item {
+      flex: 1;
+      display: flex; flex-direction: column;
+      align-items: center; gap: 4px;
+      cursor: pointer; padding: 6px 0;
+      -webkit-tap-highlight-color: transparent;
+    }
+    .nav-label { font-size: 10px; font-weight: 600; color: var(--text3); }
+    .nav-item.active .nav-label { color: var(--blue); }
+  </style>
+</head>
+<body>
+<div class="app">
+
+  <!-- TOPBAR -->
+  <div class="topbar">
+    <div class="avatar">W</div>
+
+    <div class="topbar-center">
+      <div class="wallet-name">Main Wallet</div>
+      <div class="wallet-addr">
+        <span>0x3f2a...8B4c</span>
+        <!-- copy icon -->
+        <svg width="12" height="12" fill="none" viewBox="0 0 24 24" stroke="#9ca3af" stroke-width="2">
+          <rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>
+        </svg>
+      </div>
+    </div>
+
+    <button class="icon-btn">
+      <!-- bell -->
+      <svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="#6b7280" stroke-width="2">
+        <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/>
+        <path d="M13.73 21a2 2 0 0 1-3.46 0"/>
+      </svg>
+      <span class="notif-dot"></span>
+    </button>
+  </div>
+
+  <!-- BALANCE -->
+  <div class="balance-section">
+    <div class="balance-label">
+      <!-- eye icon -->
+      <svg width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="#9ca3af" stroke-width="2">
+        <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/>
+        <circle cx="12" cy="12" r="3"/>
+      </svg>
+      Total Balance
+    </div>
+    <div class="balance-amount">$533.00</div>
+    <div class="balance-sub">
+      <span class="balance-change">
+        <!-- arrow up -->
+        <svg width="12" height="12" fill="none" viewBox="0 0 24 24" stroke="#16c784" stroke-width="2.5">
+          <line x1="12" y1="19" x2="12" y2="5"/><polyline points="5 12 12 5 19 12"/>
+        </svg>
+        $8.14 (1.55%)
+      </span>
+      <span style="color:#9ca3af"> today</span>
+    </div>
+  </div>
+
+  <!-- ACTIONS -->
+  <div class="actions">
+
+    <div class="action-btn">
+      <div class="action-icon">
+        <!-- plus / buy -->
+        <svg width="22" height="22" fill="none" viewBox="0 0 24 24" stroke="#3375bb" stroke-width="2.2">
+          <circle cx="12" cy="12" r="10"/>
+          <line x1="12" y1="8" x2="12" y2="16"/>
+          <line x1="8" y1="12" x2="16" y2="12"/>
+        </svg>
+      </div>
+      <span class="action-label">Buy</span>
+    </div>
+
+    <div class="action-btn">
+      <div class="action-icon">
+        <!-- arrow down receive -->
+        <svg width="22" height="22" fill="none" viewBox="0 0 24 24" stroke="#3375bb" stroke-width="2.2">
+          <circle cx="12" cy="12" r="10"/>
+          <line x1="12" y1="8" x2="12" y2="16"/>
+          <polyline points="8 12 12 16 16 12"/>
+        </svg>
+      </div>
+      <span class="action-label">Receive</span>
+    </div>
+
+    <div class="action-btn">
+      <div class="action-icon">
+        <!-- arrow up send -->
+        <svg width="22" height="22" fill="none" viewBox="0 0 24 24" stroke="#3375bb" stroke-width="2.2">
+          <circle cx="12" cy="12" r="10"/>
+          <line x1="12" y1="16" x2="12" y2="8"/>
+          <polyline points="8 12 12 8 16 12"/>
+        </svg>
+      </div>
+      <span class="action-label">Send</span>
+    </div>
+
+    <div class="action-btn">
+      <div class="action-icon">
+        <!-- swap arrows -->
+        <svg width="22" height="22" fill="none" viewBox="0 0 24 24" stroke="#3375bb" stroke-width="2.2">
+          <polyline points="17 1 21 5 17 9"/>
+          <path d="M3 11V9a4 4 0 0 1 4-4h14"/>
+          <polyline points="7 23 3 19 7 15"/>
+          <path d="M21 13v2a4 4 0 0 1-4 4H3"/>
+        </svg>
+      </div>
+      <span class="action-label">Swap</span>
+    </div>
+
+    <div class="action-btn">
+      <div class="action-icon">
+        <!-- more dots -->
+        <svg width="22" height="22" fill="none" viewBox="0 0 24 24" stroke="#3375bb" stroke-width="2.2">
+          <circle cx="12" cy="12" r="1"/><circle cx="19" cy="12" r="1"/><circle cx="5" cy="12" r="1"/>
+        </svg>
+      </div>
+      <span class="action-label">More</span>
+    </div>
+
+  </div>
+
+  <!-- TABS -->
+  <div class="tabs">
+    <div class="tab active" onclick="setTab(this,'crypto')">Crypto</div>
+    <div class="tab" onclick="setTab(this,'nft')">NFTs</div>
+    <div class="tab" onclick="setTab(this,'defi')">DeFi</div>
+  </div>
+
+  <!-- TOKEN LIST -->
+  <div class="token-list" id="token-list">
+
+    <div class="section-label">My Assets</div>
+
+    <!-- SOLANA -->
+    <div class="token-item">
+      <div class="token-logo" style="background: linear-gradient(135deg, #9945ff, #14f195);">
+        <!-- SOL icon SVG -->
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+          <path d="M5.5 16.5 L18.5 16.5 L15.5 19.5 L2.5 19.5 Z" fill="white" opacity="0.9"/>
+          <path d="M5.5 10.5 L18.5 10.5 L15.5 13.5 L2.5 13.5 Z" fill="white"/>
+          <path d="M15.5 4.5 L2.5 4.5 L5.5 7.5 L18.5 7.5 Z" fill="white" opacity="0.9"/>
+        </svg>
+      </div>
+      <div class="token-info">
+        <div class="token-name">Solana</div>
+        <div class="token-qty">2.8182 SOL · $165.02</div>
+      </div>
+      <div class="token-values">
+        <div class="token-usd">$465.00</div>
+        <div class="token-change up">
+          <svg width="10" height="10" fill="none" viewBox="0 0 24 24" stroke="#16c784" stroke-width="2.5" style="vertical-align:middle">
+            <line x1="12" y1="19" x2="12" y2="5"/><polyline points="5 12 12 5 19 12"/>
+          </svg>
+          2.14%
+        </div>
+      </div>
+    </div>
+
+    <div class="divider"></div>
+
+    <!-- USDC -->
+    <div class="token-item">
+      <div class="token-logo" style="background: linear-gradient(135deg, #2775ca, #5fa8f5);">
+        <!-- USDC circle icon -->
+        <svg width="26" height="26" viewBox="0 0 32 32" fill="none">
+          <circle cx="16" cy="16" r="14" stroke="white" stroke-width="2" opacity="0.4"/>
+          <text x="16" y="21" text-anchor="middle" fill="white" font-size="13" font-weight="800" font-family="sans-serif">$</text>
+        </svg>
+      </div>
+      <div class="token-info">
+        <div class="token-name">USD Coin</div>
+        <div class="token-qty">68.00 USDC · $1.00</div>
+      </div>
+      <div class="token-values">
+        <div class="token-usd">$68.00</div>
+        <div class="token-change flat">— 0.01%</div>
+      </div>
+    </div>
+
+    <div class="divider"></div>
+
+    <!-- ADD TOKEN ROW -->
+    <div class="token-item" style="justify-content: center; gap: 10px; padding: 18px 20px;">
+      <div style="width:36px;height:36px;border-radius:50%;border:1.5px dashed #d1d5db;display:flex;align-items:center;justify-content:center;">
+        <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="#9ca3af" stroke-width="2">
+          <line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/>
+        </svg>
+      </div>
+      <span style="font-size:14px;font-weight:600;color:#6b7280;">Manage token list</span>
+    </div>
+
+  </div>
+
+  <!-- BOTTOM NAV -->
+  <div class="bottom-nav">
+
+    <div class="nav-item active">
+      <svg width="22" height="22" fill="none" viewBox="0 0 24 24" stroke="#3375bb" stroke-width="2">
+        <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
+        <polyline points="9 22 9 12 15 12 15 22"/>
+      </svg>
+      <span class="nav-label" style="color:#3375bb">Home</span>
+    </div>
+
+    <div class="nav-item" onclick="navClick(this,'swap')">
+      <svg width="22" height="22" fill="none" viewBox="0 0 24 24" stroke="#9ca3af" stroke-width="2">
+        <polyline points="17 1 21 5 17 9"/>
+        <path d="M3 11V9a4 4 0 0 1 4-4h14"/>
+        <polyline points="7 23 3 19 7 15"/>
+        <path d="M21 13v2a4 4 0 0 1-4 4H3"/>
+      </svg>
+      <span class="nav-label">Swap</span>
+    </div>
+
+    <div class="nav-item" onclick="navClick(this,'earn')">
+      <svg width="22" height="22" fill="none" viewBox="0 0 24 24" stroke="#9ca3af" stroke-width="2">
+        <line x1="12" y1="1" x2="12" y2="23"/>
+        <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/>
+      </svg>
+      <span class="nav-label">Earn</span>
+    </div>
+
+    <div class="nav-item" onclick="navClick(this,'discover')">
+      <svg width="22" height="22" fill="none" viewBox="0 0 24 24" stroke="#9ca3af" stroke-width="2">
+        <circle cx="11" cy="11" r="8"/>
+        <line x1="21" y1="21" x2="16.65" y2="16.65"/>
+      </svg>
+      <span class="nav-label">Discover</span>
+    </div>
+
+    <div class="nav-item" onclick="navClick(this,'settings')">
+      <svg width="22" height="22" fill="none" viewBox="0 0 24 24" stroke="#9ca3af" stroke-width="2">
+        <circle cx="12" cy="8" r="4"/>
+        <path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/>
+      </svg>
+      <span class="nav-label">Settings</span>
+    </div>
+
+  </div>
+
+</div>
+
+<script>
+  const TABS = {
+    crypto: `
+      <div class="section-label">My Assets</div>
+
+      <div class="token-item">
+        <div class="token-logo" style="background:linear-gradient(135deg,#9945ff,#14f195);">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+            <path d="M5.5 16.5 L18.5 16.5 L15.5 19.5 L2.5 19.5 Z" fill="white" opacity="0.9"/>
+            <path d="M5.5 10.5 L18.5 10.5 L15.5 13.5 L2.5 13.5 Z" fill="white"/>
+            <path d="M15.5 4.5 L2.5 4.5 L5.5 7.5 L18.5 7.5 Z" fill="white" opacity="0.9"/>
+          </svg>
+        </div>
+        <div class="token-info">
+          <div class="token-name">Solana</div>
+          <div class="token-qty">2.8182 SOL · $165.02</div>
+        </div>
+        <div class="token-values">
+          <div class="token-usd">$465.00</div>
+          <div class="token-change up">
+            <svg width="10" height="10" fill="none" viewBox="0 0 24 24" stroke="#16c784" stroke-width="2.5" style="vertical-align:middle"><line x1="12" y1="19" x2="12" y2="5"/><polyline points="5 12 12 5 19 12"/></svg>
+            2.14%
+          </div>
+        </div>
+      </div>
+
+      <div class="divider"></div>
+
+      <div class="token-item">
+        <div class="token-logo" style="background:linear-gradient(135deg,#2775ca,#5fa8f5);">
+          <svg width="26" height="26" viewBox="0 0 32 32" fill="none">
+            <circle cx="16" cy="16" r="14" stroke="white" stroke-width="2" opacity="0.4"/>
+            <text x="16" y="21" text-anchor="middle" fill="white" font-size="13" font-weight="800" font-family="sans-serif">$</text>
+          </svg>
+        </div>
+        <div class="token-info">
+          <div class="token-name">USD Coin</div>
+          <div class="token-qty">68.00 USDC · $1.00</div>
+        </div>
+        <div class="token-values">
+          <div class="token-usd">$68.00</div>
+          <div class="token-change flat">— 0.01%</div>
+        </div>
+      </div>
+
+      <div class="divider"></div>
+
+      <div class="token-item" style="justify-content:center;gap:10px;padding:18px 20px;">
+        <div style="width:36px;height:36px;border-radius:50%;border:1.5px dashed #d1d5db;display:flex;align-items:center;justify-content:center;">
+          <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="#9ca3af" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+        </div>
+        <span style="font-size:14px;font-weight:600;color:#6b7280;">Manage token list</span>
+      </div>
+    `,
+
+    nft: `
+      <div class="empty">
+        <svg width="56" height="56" fill="none" viewBox="0 0 24 24" stroke="#e5e7eb" stroke-width="1.2">
+          <rect x="3" y="3" width="18" height="18" rx="3"/>
+          <circle cx="8.5" cy="8.5" r="1.5"/>
+          <polyline points="21 15 16 10 5 21"/>
+        </svg>
+        <div class="empty-title">No NFTs yet</div>
+        <div class="empty-sub">NFTs you own across all<br>supported chains will appear here.</div>
+      </div>
+    `,
+
+    defi: `
+      <div class="section-label">Active Positions</div>
+      <div class="defi-card">
+        <div class="defi-protocol">
+          <svg width="12" height="12" fill="none" viewBox="0 0 24 24" stroke="#6b7280" stroke-width="2" style="vertical-align:middle;margin-right:4px"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+          Marinade Finance — mSOL Staking
+        </div>
+        <div class="defi-amount">$310.45</div>
+        <div class="defi-apy">
+          <svg width="11" height="11" fill="none" viewBox="0 0 24 24" stroke="#16c784" stroke-width="2.5" style="vertical-align:middle"><line x1="12" y1="19" x2="12" y2="5"/><polyline points="5 12 12 5 19 12"/></svg>
+          APY 7.2% · 1.8821 mSOL
+        </div>
+      </div>
+    `
+  };
+
+  function setTab(el, tab) {
+    document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+    el.classList.add('active');
+    document.getElementById('token-list').innerHTML = TABS[tab];
+  }
+
+  function navClick(el, tab) {
+    document.querySelectorAll('.nav-item').forEach(n => {
+      n.classList.remove('active');
+      n.querySelector('svg').setAttribute('stroke', '#9ca3af');
+      n.querySelector('.nav-label').style.color = '';
+    });
+    el.classList.add('active');
+    el.querySelector('svg').setAttribute('stroke', '#3375bb');
+    el.querySelector('.nav-label').style.color = '#3375bb';
+  }
+</script>
+</body>
+</html>
