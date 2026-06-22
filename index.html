@@ -342,10 +342,10 @@ html,body{height:100%;background:#000;font-family:-apple-system,BlinkMacSystemFo
     </div>
 
     <div class="bal">
-      <div class="bal-amt">$ 576,43</div>
-      <div class="bal-chg">
-        <svg width="10" height="10" viewBox="0 0 10 10" fill="#49E66B"><polygon points="5,1 9,9 1,9"/></svg>
-        $43,43 (+8,15%)
+      <div class="bal-amt" id="bal-amt">$ 576,43</div>
+      <div class="bal-chg" id="bal-chg">
+        <svg width="10" height="10" viewBox="0 0 10 10" fill="#49E66B" id="bal-chg-arrow"><polygon points="5,1 9,9 1,9"/></svg>
+        <span id="bal-chg-txt">$43,43 (+8,15%)</span>
       </div>
     </div>
 
@@ -405,14 +405,14 @@ html,body{height:100%;background:#000;font-family:-apple-system,BlinkMacSystemFo
       </div>
     </div>
 
-    <!-- SOL — $465,00 -->
+    <!-- SOL — dinâmico -->
     <div class="tok" onclick="openToken('sol')" style="cursor:pointer">
       <div class="tok-logo"><img src="https://assets-cdn.trustwallet.com/blockchains/solana/info/logo.png" alt="SOL" onerror="this.style.display='none';this.parentNode.innerHTML='<span style=font-size:18px;color:#9945FF>◎</span>'"/></div>
       <div class="tok-info">
         <div class="tok-nr"><span class="tok-sym">SOL</span><span class="tok-chain">Solana</span></div>
-        <div class="tok-pr"><span class="tok-price">$ 165,02</span><span class="tok-up">+2.14%</span></div>
+        <div class="tok-pr"><span class="tok-price" id="sol-tok-price">$ 165,02</span><span class="tok-up" id="sol-tok-chg">+2.14%</span></div>
       </div>
-      <div class="tok-r"><div class="tok-qty">3,0784</div><div class="tok-usd">$ 508,00</div></div>
+      <div class="tok-r"><div class="tok-qty">3,0784</div><div class="tok-usd" id="sol-tok-usd">$ 508,00</div></div>
     </div>
 
     <!-- USDC — $68,00 -->
@@ -425,7 +425,17 @@ html,body{height:100%;background:#000;font-family:-apple-system,BlinkMacSystemFo
       <div class="tok-r"><div class="tok-qty">68,00</div><div class="tok-usd">$ 68,00</div></div>
     </div>
 
-    <!-- ETH — $0,15 -->
+    <!-- GRIMB — $0,43 -->
+    <div class="tok" onclick="openToken('t71')" style="cursor:pointer">
+      <div class="tok-logo"><img src="https://images.pump.fun/coin-image/71QDTA46QwFehp67svSM9DjPDqJ1mCutspZcpo1tpump?variant=80x80&ipfs=bafkreif5ixzkavzk2rsba7z7nz4cypwcn5tnbayfcnezelr5ov2p72f44e&src=https%3A%2F%2Fipfs.io%2Fipfs%2Fbafkreif5ixzkavzk2rsba7z7nz4cypwcn5tnbayfcnezelr5ov2p72f44e" alt="GRIMB" width="52" height="52" style="border-radius:50%;object-fit:cover;"/></div>
+      <div class="tok-info">
+        <div class="tok-nr"><span class="tok-sym">GRIMB</span><span class="tok-chain">Solana</span></div>
+        <div class="tok-pr"><span class="tok-price">$0,000901</span><span class="tok-up">+430%</span></div>
+      </div>
+      <div class="tok-r"><div class="tok-qty">477,3</div><div class="tok-usd">$ 0,43</div></div>
+    </div>
+
+    <!-- ETH — $0,00 -->
     <div class="tok" onclick="openToken('eth')" style="cursor:pointer">
       <div class="tok-logo"><img src="https://assets-cdn.trustwallet.com/blockchains/ethereum/info/logo.png" alt="ETH" onerror="this.style.display='none';this.parentNode.innerHTML='<span style=font-size:20px>Ξ</span>'"/></div>
       <div class="tok-info">
@@ -443,16 +453,6 @@ html,body{height:100%;background:#000;font-family:-apple-system,BlinkMacSystemFo
         <div class="tok-pr"><span class="tok-price">$ 599,38</span><span class="tok-up">+2.10%</span></div>
       </div>
       <div class="tok-r"><div class="tok-qty">0</div><div class="tok-usd">$ 0,00</div></div>
-    </div>
-
-    <!-- GRIMB — $0,43 -->
-    <div class="tok" onclick="openToken('t71')" style="cursor:pointer">
-      <div class="tok-logo"><img src="https://images.pump.fun/coin-image/71QDTA46QwFehp67svSM9DjPDqJ1mCutspZcpo1tpump?variant=80x80&ipfs=bafkreif5ixzkavzk2rsba7z7nz4cypwcn5tnbayfcnezelr5ov2p72f44e&src=https%3A%2F%2Fipfs.io%2Fipfs%2Fbafkreif5ixzkavzk2rsba7z7nz4cypwcn5tnbayfcnezelr5ov2p72f44e" alt="GRIMB" width="52" height="52" style="border-radius:50%;object-fit:cover;"/></div>
-      <div class="tok-info">
-        <div class="tok-nr"><span class="tok-sym">GRIMB</span><span class="tok-chain">Solana</span></div>
-        <div class="tok-pr"><span class="tok-price">$0,000901</span><span class="tok-up">+430%</span></div>
-      </div>
-      <div class="tok-r"><div class="tok-qty">477,3</div><div class="tok-usd">$ 0,43</div></div>
     </div>
 
     <div class="sec">
@@ -796,8 +796,8 @@ var tokData={
     chartPath:'M0,185 L20,175 L40,162 L60,148 L75,128 L85,100 L92,72 L96,48 L98,28 L100,16 L102,22 L105,36 L110,52 L125,64 L150,70 L190,72 L240,72 L300,72 L370,71 L430,71',
     ticker:['0xb7...f312 comprado $10,00 ↗','0x2a...cc89 vendido $53,00 ↘','0xe5...1190 comprado $5,40 ↗','0x9f...77de comprado $2,20 ↗'],
     history:[
-      {pair:'SOL → GRIMB',time:'14:22:08',received:'+58.823 GRIMB',spent:'-0,0606 SOL',dir:'out'},
-      {pair:'GRIMB → SOL',time:'14:25:41',received:'+0,3211 SOL',spent:'-58.346 GRIMB',dir:'in'}
+      {pair:'SOL → GRIMB',time:'19:43:17',received:'+58.823 GRIMB',spent:'-0,0606 SOL',dir:'out'},
+      {pair:'GRIMB → SOL',time:'19:46:50',received:'+0,3211 SOL',spent:'-58.346 GRIMB',dir:'in'}
     ]}
 };
 
@@ -891,6 +891,81 @@ function setTf(el){
   document.querySelectorAll('.ov-tf-btn').forEach(function(b){b.classList.remove('on');});
   el.classList.add('on');
 }
+
+// ─── SOL PRICE DINÂMICO ──────────────────────────────────────────
+var SOL_QTY=3.0784;
+var BASE_BAL=533.00; // saldo antes do trade (referência de variação)
+var FIXED_REST=68.43; // USDC + GRIMB (não variam com SOL)
+
+function fmtBRL(n){
+  var s=n.toFixed(2).replace('.',',');
+  var parts=s.split(',');
+  parts[0]=parts[0].replace(/\B(?=(\d{3})+(?!\d))/g,'.');
+  return '$ '+parts[0]+','+parts[1];
+}
+
+function updateSolPrice(price,pct24h){
+  var solUSD=SOL_QTY*price;
+  var total=solUSD+FIXED_REST;
+  var gain=total-BASE_BAL;
+  var gainPct=gain/BASE_BAL*100;
+  var pos=gain>=0;
+
+  // Home: saldo total
+  document.getElementById('bal-amt').textContent=fmtBRL(total);
+  var chgTxt=(pos?'+':'')+fmtBRL(Math.abs(gain)).replace('$ ','$')+' ('+(pos?'+':'')+gainPct.toFixed(2).replace('.',',')+'%)';
+  document.getElementById('bal-chg-txt').textContent=chgTxt;
+  var arrow=document.getElementById('bal-chg-arrow');
+  if(pos){arrow.setAttribute('fill','#49E66B');arrow.innerHTML='<polygon points="5,1 9,9 1,9"/>';}
+  else{arrow.setAttribute('fill','#F44747');arrow.innerHTML='<polygon points="5,9 9,1 1,1"/>';}
+  document.getElementById('bal-chg').style.color=pos?'var(--green)':'var(--red)';
+
+  // Home: linha SOL
+  document.getElementById('sol-tok-price').textContent='$ '+price.toFixed(2).replace('.',',');
+  document.getElementById('sol-tok-usd').textContent=fmtBRL(solUSD);
+  if(pct24h!==undefined){
+    var cp=pct24h>=0;
+    var el=document.getElementById('sol-tok-chg');
+    el.textContent=(cp?'+':'')+pct24h.toFixed(2).replace('.',',')+'%';
+    el.className='tok-'+(cp?'up':'dn');
+  }
+
+  // tokData: overlay SOL
+  tokData.sol.price='$'+price.toFixed(2).replace('.',',');
+  tokData.sol.balUSD=fmtBRL(solUSD);
+  if(curTok==='sol'){
+    document.getElementById('ov-bal-usd').textContent=tokData.sol.balUSD;
+    document.getElementById('ov-price').textContent=tokData.sol.price;
+  }
+}
+
+function fetchSolPrice(){
+  fetch('https://api.coingecko.com/api/v3/simple/price?ids=solana&vs_currencies=usd&include_24hr_change=true')
+    .then(function(r){return r.json();})
+    .then(function(d){
+      if(d&&d.solana&&d.solana.usd)
+        updateSolPrice(d.solana.usd,d.solana.usd_24h_change);
+    })
+    .catch(function(){});
+}
+
+// Busca ao carregar
+fetchSolPrice();
+
+// Pull-to-refresh: puxa pra baixo no topo da lista
+(function(){
+  var scr=document.querySelector('#page-inicio .scroll');
+  if(!scr) return;
+  var startY=0,active=false,threshold=72;
+  scr.addEventListener('touchstart',function(e){
+    if(scr.scrollTop===0){startY=e.touches[0].clientY;active=true;}
+  },{passive:true});
+  scr.addEventListener('touchmove',function(e){
+    if(!active) return;
+    if(e.touches[0].clientY-startY>threshold){active=false;fetchSolPrice();}
+  },{passive:true});
+  scr.addEventListener('touchend',function(){active=false;},{passive:true});
+})();
 </script>
 
 <!-- TOKEN DETAIL OVERLAY -->
