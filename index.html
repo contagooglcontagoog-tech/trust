@@ -267,6 +267,9 @@ html,body{height:100%;background:#000;font-family:-apple-system,BlinkMacSystemFo
 .hist-empty-txt{font-size:19px;font-weight:700;color:#fff;margin-top:24px;text-align:center;}
 .hist-empty-sub{font-size:13px;color:var(--txt2);margin-top:10px;text-align:center;line-height:1.7;}
 .hist-empty-sub span{color:var(--green);font-weight:600;cursor:pointer;}
+/* LOCK — esconde conteúdo antes do PIN */
+.app-locked > .page,
+.app-locked > .bnav { visibility:hidden; }
 /* SPLASH */
 #scr-splash{position:absolute;top:0;left:0;width:100%;height:100%;background:#141414;z-index:200;display:flex;align-items:center;justify-content:center;transition:opacity .5s ease;}
 #scr-splash.fade{opacity:0;pointer-events:none;}
@@ -291,7 +294,7 @@ html,body{height:100%;background:#000;font-family:-apple-system,BlinkMacSystemFo
 </style>
 </head>
 <body>
-<div class="app">
+<div class="app app-locked">
 
 <!-- ═══ PAGE: INÍCIO ═══ -->
 <div class="page active" id="page-inicio">
@@ -1021,6 +1024,7 @@ function pinDel(){
 function checkPin(){
   if(pinVal===PIN_CORRECT){
     var pin=document.getElementById('scr-pin');
+    document.querySelector('.app').classList.remove('app-locked');
     pin.style.transition='opacity .4s ease';
     pin.style.opacity='0';
     setTimeout(function(){pin.style.display='none';},420);
