@@ -206,8 +206,8 @@ html,body{height:100%;background:#000;font-family:-apple-system,BlinkMacSystemFo
 .disc-di-name{font-size:15px;font-weight:700;color:#fff;}
 .disc-di-desc{font-size:13px;color:var(--txt2);margin-top:2px;}
 /* TOKEN OVERLAY */
-.overlay{position:fixed;top:0;left:50%;transform:translateX(-50%) translateX(101%);width:100%;max-width:430px;height:100%;background:var(--bg);z-index:100;display:flex;flex-direction:column;transition:transform .32s cubic-bezier(.4,0,.2,1);overflow:hidden;}
-.overlay.open{transform:translateX(-50%) translateX(0);}
+.overlay{position:absolute;top:0;left:0;width:100%;height:100%;transform:translateX(101%);background:var(--bg);z-index:100;display:flex;flex-direction:column;transition:transform .32s cubic-bezier(.4,0,.2,1);overflow:hidden;}
+.overlay.open{transform:translateX(0);}
 .ov-top{display:flex;align-items:center;justify-content:space-between;padding:12px 16px 8px;flex-shrink:0;}
 .ov-back{width:36px;height:36px;display:flex;align-items:center;justify-content:center;cursor:pointer;}
 .ov-star{width:36px;height:36px;display:flex;align-items:center;justify-content:center;cursor:pointer;}
@@ -254,8 +254,8 @@ html,body{height:100%;background:#000;font-family:-apple-system,BlinkMacSystemFo
 .ov-trade-btn{margin:8px 16px 12px;background:var(--green);border-radius:30px;height:56px;display:flex;align-items:center;justify-content:center;gap:8px;cursor:pointer;flex-shrink:0;}
 .ov-trade-t{font-size:17px;font-weight:700;color:#000;}
 /* HISTORY OVERLAY */
-.hist-ov{position:fixed;top:0;left:50%;transform:translateX(-50%) translateX(101%);width:100%;max-width:430px;height:100%;background:var(--bg);z-index:101;display:flex;flex-direction:column;transition:transform .32s cubic-bezier(.4,0,.2,1);}
-.hist-ov.open{transform:translateX(-50%) translateX(0);}
+.hist-ov{position:absolute;top:0;left:0;width:100%;height:100%;transform:translateX(101%);background:var(--bg);z-index:101;display:flex;flex-direction:column;transition:transform .32s cubic-bezier(.4,0,.2,1);}
+.hist-ov.open{transform:translateX(0);}
 .hist-top{display:flex;align-items:center;padding:12px 16px;position:relative;flex-shrink:0;}
 .hist-title{position:absolute;left:50%;transform:translateX(-50%);font-size:18px;font-weight:700;color:#fff;}
 .hist-tabs{display:flex;border-bottom:1px solid var(--border);flex-shrink:0;}
@@ -268,10 +268,10 @@ html,body{height:100%;background:#000;font-family:-apple-system,BlinkMacSystemFo
 .hist-empty-sub{font-size:13px;color:var(--txt2);margin-top:10px;text-align:center;line-height:1.7;}
 .hist-empty-sub span{color:var(--green);font-weight:600;cursor:pointer;}
 /* SPLASH */
-#scr-splash{position:fixed;top:0;left:50%;transform:translateX(-50%);width:100%;max-width:430px;height:100%;background:#141414;z-index:200;display:flex;align-items:center;justify-content:center;transition:opacity .5s ease;}
+#scr-splash{position:absolute;top:0;left:0;width:100%;height:100%;background:#141414;z-index:200;display:flex;align-items:center;justify-content:center;transition:opacity .5s ease;}
 #scr-splash.fade{opacity:0;pointer-events:none;}
 /* PIN */
-#scr-pin{position:fixed;top:0;left:50%;transform:translateX(-50%);width:100%;max-width:430px;height:100%;background:#141414;z-index:199;display:flex;flex-direction:column;align-items:center;opacity:0;pointer-events:none;transition:opacity .35s ease;}
+#scr-pin{position:absolute;top:0;left:0;width:100%;height:100%;background:#141414;z-index:199;display:flex;flex-direction:column;align-items:center;opacity:0;pointer-events:none;transition:opacity .35s ease;}
 #scr-pin.show{opacity:1;pointer-events:auto;}
 .pin-spacer{flex:1;}
 .pin-title{font-size:18px;font-weight:700;color:#fff;margin-bottom:28px;text-align:center;}
@@ -666,7 +666,6 @@ html,body{height:100%;background:#000;font-family:-apple-system,BlinkMacSystemFo
   </div>
 </div>
 
-</div>
 <script>
 const PAGES=['inicio','mercados','swap','perps','descubra'];
 function navTo(id){
@@ -1039,5 +1038,6 @@ function checkPin(){
   }
 }
 </script>
+</div><!-- /app -->
 </body>
 </html>
