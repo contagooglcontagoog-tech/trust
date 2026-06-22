@@ -205,6 +205,68 @@ html,body{height:100%;background:#000;font-family:-apple-system,BlinkMacSystemFo
 .disc-dl img{width:100%;height:100%;object-fit:cover;}
 .disc-di-name{font-size:15px;font-weight:700;color:#fff;}
 .disc-di-desc{font-size:13px;color:var(--txt2);margin-top:2px;}
+/* TOKEN OVERLAY */
+.overlay{position:fixed;top:0;left:50%;transform:translateX(-50%) translateX(101%);width:100%;max-width:430px;height:100%;background:var(--bg);z-index:100;display:flex;flex-direction:column;transition:transform .32s cubic-bezier(.4,0,.2,1);overflow:hidden;}
+.overlay.open{transform:translateX(-50%) translateX(0);}
+.ov-top{display:flex;align-items:center;justify-content:space-between;padding:12px 16px 8px;flex-shrink:0;}
+.ov-back{width:36px;height:36px;display:flex;align-items:center;justify-content:center;cursor:pointer;}
+.ov-star{width:36px;height:36px;display:flex;align-items:center;justify-content:center;cursor:pointer;}
+.ov-hero{display:flex;align-items:center;justify-content:space-between;padding:8px 16px 12px;flex-shrink:0;}
+.ov-hero-l{display:flex;align-items:center;gap:12px;}
+.ov-logo{width:48px;height:48px;border-radius:50%;overflow:hidden;background:var(--bg3);flex-shrink:0;display:flex;align-items:center;justify-content:center;}
+.ov-logo img{width:100%;height:100%;object-fit:cover;}
+.ov-sym{font-size:20px;font-weight:800;color:#fff;}
+.ov-fullname{font-size:13px;color:var(--txt2);margin-top:2px;}
+.ov-price{font-size:22px;font-weight:700;color:#fff;text-align:right;}
+.ov-chg-up{font-size:13px;font-weight:600;color:var(--green);text-align:right;margin-top:3px;}
+.ov-chg-dn{font-size:13px;font-weight:600;color:var(--red);text-align:right;margin-top:3px;}
+.ov-chart-wrap{width:100%;flex-shrink:0;overflow:hidden;}
+.ov-tf{display:flex;align-items:center;justify-content:space-around;padding:10px 8px;flex-shrink:0;}
+.ov-tf-btn{font-size:14px;font-weight:500;color:var(--txt2);padding:6px 10px;border-radius:20px;cursor:pointer;}
+.ov-tf-btn.on{background:var(--bg3);color:#fff;font-weight:700;}
+.ov-scroll{flex:1;overflow-y:auto;-webkit-overflow-scrolling:touch;}
+.ov-scroll::-webkit-scrollbar{display:none;}
+.ov-bal-row{display:flex;align-items:center;justify-content:space-between;padding:16px 16px 4px;}
+.ov-bal-lbl{font-size:17px;font-weight:700;color:#fff;}
+.ov-bal-r{text-align:right;}
+.ov-bal-usd{font-size:17px;font-weight:700;color:#fff;}
+.ov-bal-amt{font-size:12px;color:var(--txt2);margin-top:2px;}
+.ov-action-row{display:flex;gap:12px;padding:12px 16px;}
+.ov-action{flex:1;height:52px;background:var(--bg3);border-radius:14px;display:flex;align-items:center;justify-content:center;gap:8px;cursor:pointer;font-size:15px;font-weight:600;color:#fff;}
+.ov-hist-row{display:flex;align-items:center;padding:20px 16px 4px;cursor:pointer;}
+.ov-hist-lbl{font-size:16px;font-weight:700;color:#fff;}
+.ov-missing{text-align:center;padding:10px 16px 24px;font-size:13px;color:var(--txt2);}
+.ov-missing span{color:var(--green);font-weight:600;cursor:pointer;}
+.ov-stats-hdr{font-size:18px;font-weight:700;color:#fff;padding:20px 16px 12px;}
+.ov-stats-grid{display:grid;grid-template-columns:1fr 1fr;padding:0 16px;}
+.ov-stat{padding:10px 0;border-bottom:1px solid var(--border);}
+.ov-stat-l{font-size:12px;color:var(--txt2);margin-bottom:4px;}
+.ov-stat-v{font-size:15px;font-weight:600;color:#fff;}
+.ov-stat-risk{color:var(--green);font-size:14px;font-weight:500;}
+.ov-sobre-hdr{font-size:18px;font-weight:700;color:#fff;padding:20px 16px 12px;}
+.ov-sobre-chips{display:flex;flex-wrap:wrap;gap:8px;padding:0 16px 20px;}
+.ov-chip{display:flex;align-items:center;gap:6px;border:1.5px solid var(--bg3);border-radius:20px;padding:9px 16px;font-size:13px;font-weight:500;color:#fff;cursor:pointer;}
+.ov-ticker-wrap{overflow:hidden;flex-shrink:0;padding:6px 0;border-top:1px solid var(--border);}
+.ov-ticker{display:inline-flex;gap:40px;white-space:nowrap;animation:ov-scroll 22s linear infinite;}
+@keyframes ov-scroll{from{transform:translateX(0);}to{transform:translateX(-50%);}}
+.ov-ticker-buy{font-size:12px;color:var(--green);}
+.ov-ticker-sell{font-size:12px;color:var(--red);}
+.ov-trade-btn{margin:8px 16px 12px;background:var(--green);border-radius:30px;height:56px;display:flex;align-items:center;justify-content:center;gap:8px;cursor:pointer;flex-shrink:0;}
+.ov-trade-t{font-size:17px;font-weight:700;color:#000;}
+/* HISTORY OVERLAY */
+.hist-ov{position:fixed;top:0;left:50%;transform:translateX(-50%) translateX(101%);width:100%;max-width:430px;height:100%;background:var(--bg);z-index:101;display:flex;flex-direction:column;transition:transform .32s cubic-bezier(.4,0,.2,1);}
+.hist-ov.open{transform:translateX(-50%) translateX(0);}
+.hist-top{display:flex;align-items:center;padding:12px 16px;position:relative;flex-shrink:0;}
+.hist-title{position:absolute;left:50%;transform:translateX(-50%);font-size:18px;font-weight:700;color:#fff;}
+.hist-tabs{display:flex;border-bottom:1px solid var(--border);flex-shrink:0;}
+.hist-tab{flex:1;text-align:center;padding:12px 6px;font-size:14px;font-weight:600;color:var(--txt2);cursor:pointer;position:relative;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.hist-tab.on{color:#fff;}
+.hist-tab.on::after{content:'';position:absolute;bottom:-1px;left:0;right:0;height:2px;background:var(--green);border-radius:1px;}
+.hist-filtros{margin:12px 16px 0;background:var(--bg3);border-radius:20px;padding:8px 18px;display:inline-flex;align-items:center;gap:6px;font-size:14px;font-weight:600;color:#fff;cursor:pointer;align-self:flex-start;flex-shrink:0;}
+.hist-empty{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:24px 32px;}
+.hist-empty-txt{font-size:19px;font-weight:700;color:#fff;margin-top:24px;text-align:center;}
+.hist-empty-sub{font-size:13px;color:var(--txt2);margin-top:10px;text-align:center;line-height:1.7;}
+.hist-empty-sub span{color:var(--green);font-weight:600;cursor:pointer;}
 </style>
 </head>
 <body>
@@ -301,7 +363,7 @@ html,body{height:100%;background:#000;font-family:-apple-system,BlinkMacSystemFo
     </div>
 
     <!-- SOL — $465,00 -->
-    <div class="tok">
+    <div class="tok" onclick="openToken('sol')" style="cursor:pointer">
       <div class="tok-logo"><img src="https://assets-cdn.trustwallet.com/blockchains/solana/info/logo.png" alt="SOL" onerror="this.style.display='none';this.parentNode.innerHTML='<span style=font-size:18px;color:#9945FF>◎</span>'"/></div>
       <div class="tok-info">
         <div class="tok-nr"><span class="tok-sym">SOL</span><span class="tok-chain">Solana</span></div>
@@ -311,7 +373,7 @@ html,body{height:100%;background:#000;font-family:-apple-system,BlinkMacSystemFo
     </div>
 
     <!-- USDC — $68,00 -->
-    <div class="tok">
+    <div class="tok" onclick="openToken('usdc')" style="cursor:pointer">
       <div class="tok-logo"><img src="https://assets-cdn.trustwallet.com/blockchains/ethereum/assets/0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48/logo.png" alt="USDC" onerror="this.style.display='none';this.parentNode.innerHTML='<span style=font-size:16px;color:#2775CA;font-weight:800>$</span>'"/></div>
       <div class="tok-info">
         <div class="tok-nr"><span class="tok-sym">USDC</span><span class="tok-chain">Solana</span></div>
@@ -321,7 +383,7 @@ html,body{height:100%;background:#000;font-family:-apple-system,BlinkMacSystemFo
     </div>
 
     <!-- ETH — $0,15 -->
-    <div class="tok">
+    <div class="tok" onclick="openToken('eth')" style="cursor:pointer">
       <div class="tok-logo"><img src="https://assets-cdn.trustwallet.com/blockchains/ethereum/info/logo.png" alt="ETH" onerror="this.style.display='none';this.parentNode.innerHTML='<span style=font-size:20px>Ξ</span>'"/></div>
       <div class="tok-info">
         <div class="tok-nr"><span class="tok-sym">ETH</span><span class="tok-chain">Ethereum</span></div>
@@ -331,7 +393,7 @@ html,body{height:100%;background:#000;font-family:-apple-system,BlinkMacSystemFo
     </div>
 
     <!-- BNB — $0,00 -->
-    <div class="tok">
+    <div class="tok" onclick="openToken('bnb')" style="cursor:pointer">
       <div class="tok-logo"><img src="https://assets-cdn.trustwallet.com/blockchains/smartchain/info/logo.png" alt="BNB" onerror="this.style.display='none';this.parentNode.innerHTML='<span style=font-size:14px;font-weight:800;color:#F3BA2F>BNB</span>'"/></div>
       <div class="tok-info">
         <div class="tok-nr"><span class="tok-sym">BNB</span><span class="tok-chain">BNB Smart Chain</span></div>
@@ -624,6 +686,236 @@ function nk(k){
   });
   setInterval(function(){go((cur+1)%total);},4000);
 })();
+
+// ─── TOKEN DATA ───────────────────────────────────────────────────
+var tokData={
+  sol:{sym:'SOL',name:'Solana',chain:'Solana',
+    logo:'https://assets-cdn.trustwallet.com/blockchains/solana/info/logo.png',
+    price:'$165,02',chg:'+$3,45 (2,14%)',chgPos:true,
+    balUSD:'$ 465,00',balAmt:'2,8182 SOL',
+    cap:'$84,72B',vol:'$3,12B',holders:'-',created:'mar. de 2020',
+    supply:'514,23M (100,00%)',security:'Nenhum risco encontrado.',
+    liquidity:'$1,24B',top10pct:'-',top10buy:'-',top10sell:'-',
+    chartColor:'#49E66B',
+    chartPath:'M0,105 C20,100 40,112 60,107 C80,102 100,88 120,84 C145,79 165,72 185,65 C205,58 225,63 250,52 C270,43 295,38 315,32 C338,25 360,20 385,16 C405,13 420,12 430,11',
+    ticker:['0xd8...1b26 comprado $1,03 SOL ↗','0xa3...f221 comprado $0,85 SOL ↗','0x9b...44cc vendido $2,10 SOL ↘','0xe1...77ab comprado $1,40 SOL ↗']},
+  usdc:{sym:'USDC',name:'USD Coin',chain:'Solana',
+    logo:'https://assets-cdn.trustwallet.com/blockchains/ethereum/assets/0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48/logo.png',
+    price:'$1,00',chg:'+$0,00 (0,01%)',chgPos:true,
+    balUSD:'$ 68,00',balAmt:'68,00 USDC',
+    cap:'$60,45B',vol:'$7,13B',holders:'-',created:'set. de 2018',
+    supply:'60,45B (100,00%)',security:'Nenhum risco encontrado.',
+    liquidity:'$8,92B',top10pct:'-',top10buy:'-',top10sell:'-',
+    chartColor:'#49E66B',
+    chartPath:'M0,80 C60,77 120,83 180,80 C240,77 300,82 360,79 C395,77 415,80 430,79',
+    ticker:['0x5c...8b01 comprado $120,00 USDC ↗','0x7f...3de2 comprado $500,00 USDC ↗','0x2a...cc99 vendido $80,00 USDC ↘','0x8e...1122 comprado $250,00 USDC ↗']},
+  eth:{sym:'ETH',name:'Ethereum',chain:'Ethereum',
+    logo:'https://assets-cdn.trustwallet.com/blockchains/ethereum/info/logo.png',
+    price:'$1.766,21',chg:'-$224,63 (11,3%)',chgPos:false,
+    balUSD:'$ 0,15',balAmt:'0,00009 ETH',
+    cap:'$213,31B',vol:'$12,69B',holders:'-',created:'11 de set. de 2024',
+    supply:'120,68M (100,00%)',security:'Nenhum risco encontrado.',
+    liquidity:'$162,85M',top10pct:'-',top10buy:'-',top10sell:'-',
+    chartColor:'#F44747',
+    chartPath:'M0,48 C25,52 48,50 68,62 C90,75 110,92 135,120 C155,140 175,154 198,150 C220,146 240,130 262,114 C282,99 302,90 325,80 C348,70 372,62 400,57 C415,54 425,52 430,50',
+    ticker:['0xd8...1b26 comprado $1,03 ETH ↗','0x78...e0b6 vendido $7,33 ETH ↘','0xa1...cc34 comprado $0,55 ETH ↗','0x3b...ff01 vendido $2,10 ETH ↘']},
+  bnb:{sym:'BNB',name:'BNB',chain:'BNB Smart Chain',
+    logo:'https://assets-cdn.trustwallet.com/blockchains/binance/info/logo.png',
+    price:'$599,38',chg:'+$12,30 (2,10%)',chgPos:true,
+    balUSD:'$ 0,00',balAmt:'0 BNB',
+    cap:'$88,74B',vol:'$1,23B',holders:'-',created:'jul. de 2017',
+    supply:'144,83M (100,00%)',security:'Nenhum risco encontrado.',
+    liquidity:'$2,45B',top10pct:'-',top10buy:'-',top10sell:'-',
+    chartColor:'#49E66B',
+    chartPath:'M0,52 C40,54 80,60 120,66 C165,73 205,78 248,82 C288,86 330,87 375,86 C400,85 418,84 430,83',
+    ticker:['0x33...aa12 comprado $1,50 BNB ↗','0x55...bb44 vendido $3,20 BNB ↘','0xc7...9900 comprado $5,00 BNB ↗','0xde...5521 vendido $0,80 BNB ↘']}
+};
+
+// ─── TOKEN OVERLAY ────────────────────────────────────────────────
+function openToken(id){
+  var d=tokData[id];
+  var img=document.getElementById('ov-logo-img');
+  img.src=d.logo; img.alt=d.sym;
+  document.getElementById('ov-sym').textContent=d.sym;
+  document.getElementById('ov-fullname').textContent=d.name;
+  document.getElementById('ov-price').textContent=d.price;
+  var ce=document.getElementById('ov-chg');
+  ce.textContent=d.chg; ce.className=d.chgPos?'ov-chg-up':'ov-chg-dn';
+  document.getElementById('ov-bal-usd').textContent=d.balUSD;
+  document.getElementById('ov-bal-amt').textContent=d.balAmt;
+  // Chart
+  var c=document.getElementById('ov-chart');
+  var col=d.chartColor;
+  c.innerHTML='<defs><linearGradient id="cg" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="'+col+'" stop-opacity="0.25"/><stop offset="100%" stop-color="'+col+'" stop-opacity="0"/></linearGradient></defs>'
+    +'<path d="'+d.chartPath+' L430,160 L0,160 Z" fill="url(#cg)"/>'
+    +'<path d="'+d.chartPath+'" fill="none" stroke="'+col+'" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>';
+  // Stats
+  var rows=[
+    ['Cap. de mercado',d.cap],['Volume em 24h',d.vol],
+    ['Holders',d.holders],['Criado',d.created],
+    ['% de fornecimento em circulação',d.supply],['Riscos de segurança ›','<span class="ov-stat-risk">'+d.security+'</span>'],
+    ['Liquidez (US$)',d.liquidity],['% dos 10 principais holders',d.top10pct],
+    ['Compra média dos 10 principais',d.top10buy],['Venda média dos 10 principais h.',d.top10sell]
+  ];
+  document.getElementById('ov-stats').innerHTML=rows.map(function(r){
+    return '<div class="ov-stat"><div class="ov-stat-l">'+r[0]+'</div><div class="ov-stat-v">'+r[1]+'</div></div>';
+  }).join('');
+  // Chips
+  var chips=[
+    ['<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#9E9E9E" stroke-width="2"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>','Site'],
+    ['<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#9E9E9E" stroke-width="2"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"/></svg>','X'],
+    ['<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#9E9E9E" stroke-width="2"><circle cx="12" cy="8" r="4"/><path d="M20 21a8 8 0 1 0-16 0"/></svg>','Reddit'],
+    ['<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#9E9E9E" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>','Whitepaper']
+  ];
+  document.getElementById('ov-chips').innerHTML=chips.map(function(c){
+    return '<div class="ov-chip">'+c[0]+' '+c[1]+'</div>';
+  }).join('');
+  // Ticker (duplicate for seamless loop)
+  var ticks=d.ticker.concat(d.ticker);
+  document.getElementById('ov-ticker').innerHTML=ticks.map(function(t){
+    return '<span class="'+(t.includes('↗')?'ov-ticker-buy':'ov-ticker-sell')+'">'+t+'</span>';
+  }).join('');
+  // Reset tf buttons
+  document.querySelectorAll('.ov-tf-btn').forEach(function(b,i){b.classList.toggle('on',i===2);});
+  // Scroll reset
+  document.getElementById('ov-scroll').scrollTop=0;
+  document.getElementById('overlay-token').classList.add('open');
+}
+function closeToken(){document.getElementById('overlay-token').classList.remove('open');}
+function openHistory(){document.getElementById('overlay-history').classList.add('open');}
+function closeHistory(){document.getElementById('overlay-history').classList.remove('open');}
+function setTf(el){
+  document.querySelectorAll('.ov-tf-btn').forEach(function(b){b.classList.remove('on');});
+  el.classList.add('on');
+}
 </script>
+
+<!-- TOKEN DETAIL OVERLAY -->
+<div class="overlay" id="overlay-token">
+  <div class="ov-top">
+    <div class="ov-back" onclick="closeToken()">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2"><polyline points="15 18 9 12 15 6"/></svg>
+    </div>
+    <div class="ov-star">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#9E9E9E" stroke-width="1.8"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+    </div>
+  </div>
+  <div class="ov-hero">
+    <div class="ov-hero-l">
+      <div class="ov-logo"><img id="ov-logo-img" src="" alt="" onerror="this.style.display='none'"/></div>
+      <div>
+        <div class="ov-sym" id="ov-sym"></div>
+        <div class="ov-fullname" id="ov-fullname"></div>
+      </div>
+    </div>
+    <div>
+      <div class="ov-price" id="ov-price"></div>
+      <div id="ov-chg"></div>
+    </div>
+  </div>
+  <div class="ov-chart-wrap">
+    <svg id="ov-chart" width="430" height="160" viewBox="0 0 430 160" preserveAspectRatio="none" style="width:100%;display:block;"></svg>
+  </div>
+  <div class="ov-tf">
+    <div class="ov-tf-btn" onclick="setTf(this)">LIVE</div>
+    <div class="ov-tf-btn" onclick="setTf(this)">1m</div>
+    <div class="ov-tf-btn on" onclick="setTf(this)">1H</div>
+    <div class="ov-tf-btn" onclick="setTf(this)">1D</div>
+    <div class="ov-tf-btn" onclick="setTf(this)">1W</div>
+    <div class="ov-tf-btn" onclick="setTf(this)">1M</div>
+    <div class="ov-tf-btn" style="display:flex;align-items:center;"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#9E9E9E" stroke-width="2"><rect x="2" y="2" width="9" height="9" rx="1"/><rect x="13" y="2" width="9" height="9" rx="1"/><rect x="2" y="13" width="9" height="9" rx="1"/><rect x="13" y="13" width="9" height="9" rx="1"/></svg></div>
+  </div>
+  <div class="ov-scroll" id="ov-scroll">
+    <div class="ov-bal-row">
+      <div class="ov-bal-lbl">Your balance</div>
+      <div class="ov-bal-r">
+        <div class="ov-bal-usd" id="ov-bal-usd"></div>
+        <div class="ov-bal-amt" id="ov-bal-amt"></div>
+      </div>
+    </div>
+    <div class="ov-action-row">
+      <div class="ov-action">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
+        Enviar
+      </div>
+      <div class="ov-action">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2"><rect x="3" y="3" width="5" height="5" rx="1"/><rect x="16" y="3" width="5" height="5" rx="1"/><rect x="3" y="16" width="5" height="5" rx="1"/><path d="M16 16h2v2h-2zm2-2h2v2h-2zm0 4h2v2h-2z"/></svg>
+        Receber
+      </div>
+    </div>
+    <div class="ov-hist-row" onclick="openHistory()">
+      <div class="ov-hist-lbl">Histórico recente</div>
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#9E9E9E" stroke-width="2" style="margin-left:6px"><polyline points="9 18 15 12 9 6"/></svg>
+    </div>
+    <div class="ov-missing">Faltando uma transação? <span>Ver no explorador</span></div>
+    <div class="ov-stats-hdr">Stats</div>
+    <div class="ov-stats-grid" id="ov-stats"></div>
+    <div class="ov-sobre-hdr">Sobre</div>
+    <div class="ov-sobre-chips" id="ov-chips"></div>
+    <div style="height:20px;"></div>
+  </div>
+  <div class="ov-ticker-wrap">
+    <div class="ov-ticker" id="ov-ticker"></div>
+  </div>
+  <div class="ov-trade-btn">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#000" stroke-width="2.5"><polyline points="1 4 1 10 7 10"/><polyline points="23 20 23 14 17 14"/><path d="M20.49 9A9 9 0 0 0 5.64 5.64L1 10m22 4l-4.64 4.36A9 9 0 0 1 3.51 15"/></svg>
+    <span class="ov-trade-t">Trade</span>
+  </div>
+</div>
+
+<!-- HISTORY OVERLAY -->
+<div class="hist-ov" id="overlay-history">
+  <div class="hist-top">
+    <div class="ov-back" onclick="closeHistory()">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2"><polyline points="15 18 9 12 15 6"/></svg>
+    </div>
+    <span class="hist-title">History</span>
+  </div>
+  <div class="hist-tabs">
+    <div class="hist-tab on">Histórico de tran...</div>
+    <div class="hist-tab">Orders</div>
+    <div class="hist-tab">Order History</div>
+  </div>
+  <div class="hist-filtros">Filtros <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg></div>
+  <div class="hist-empty">
+    <svg width="150" height="150" viewBox="0 0 150 150" fill="none">
+      <!-- pyramid wireframe -->
+      <path d="M75 18 L125 115 L25 115 Z" stroke="#2a8a8a" stroke-width="1.2" fill="none" opacity="0.7"/>
+      <line x1="75" y1="18" x2="75" y2="115" stroke="#2a8a8a" stroke-width="0.8" opacity="0.4"/>
+      <line x1="75" y1="18" x2="50" y2="66" stroke="#2a8a8a" stroke-width="0.8" opacity="0.3"/>
+      <line x1="75" y1="18" x2="100" y2="66" stroke="#2a8a8a" stroke-width="0.8" opacity="0.3"/>
+      <line x1="25" y1="115" x2="100" y2="66" stroke="#2a8a8a" stroke-width="0.8" opacity="0.3"/>
+      <line x1="125" y1="115" x2="50" y2="66" stroke="#2a8a8a" stroke-width="0.8" opacity="0.3"/>
+      <!-- gameboy body gradient -->
+      <defs>
+        <linearGradient id="gbg" x1="40" y1="72" x2="110" y2="148" gradientUnits="userSpaceOnUse">
+          <stop offset="0%" stop-color="#b5f03a"/>
+          <stop offset="100%" stop-color="#49E66B"/>
+        </linearGradient>
+      </defs>
+      <rect x="40" y="72" width="70" height="78" rx="10" fill="url(#gbg)"/>
+      <!-- screen bezel -->
+      <rect x="50" y="80" width="50" height="36" rx="4" fill="#1a2a4a"/>
+      <rect x="52" y="82" width="46" height="32" rx="3" fill="#1e3562"/>
+      <!-- screen shine -->
+      <rect x="53" y="83" width="18" height="6" rx="2" fill="#fff" opacity="0.08"/>
+      <!-- dpad -->
+      <rect x="49" y="126" width="7" height="20" rx="3" fill="#1a2a1a" opacity="0.45"/>
+      <rect x="45" y="130" width="15" height="7" rx="3" fill="#1a2a1a" opacity="0.45"/>
+      <!-- a/b buttons -->
+      <circle cx="97" cy="134" r="5" fill="#1a2a1a" opacity="0.45"/>
+      <circle cx="107" cy="127" r="5" fill="#1a2a1a" opacity="0.45"/>
+      <!-- start/select -->
+      <rect x="62" y="120" width="11" height="4" rx="2" fill="#1a2a1a" opacity="0.35"/>
+      <rect x="78" y="120" width="11" height="4" rx="2" fill="#1a2a1a" opacity="0.35"/>
+      <!-- flying element top right -->
+      <circle cx="122" cy="60" r="4" fill="#49E66B" opacity="0.9"/>
+      <line x1="122" y1="64" x2="114" y2="78" stroke="#49E66B" stroke-width="1" opacity="0.5" stroke-dasharray="2,2"/>
+      <polygon points="119,56 125,56 122,50" fill="#49E66B" opacity="0.7"/>
+    </svg>
+    <div class="hist-empty-txt">Nenhuma transação ainda</div>
+    <div class="hist-empty-sub">Não encontrou sua transação?<br/><span>Verifique no explorador</span></div>
+  </div>
+</div>
 </body>
 </html>
