@@ -286,6 +286,16 @@ html,body{height:100%;background:#000;font-family:-apple-system,BlinkMacSystemFo
 .hist-tx-r{text-align:right;}
 .hist-tx-in{font-size:14px;font-weight:600;color:#49E66B;}
 .hist-tx-out{font-size:12px;color:var(--txt2);margin-top:3px;}
+/* PULL-TO-REFRESH */
+#ptr-wrap{position:absolute;top:0;left:0;right:0;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;overflow:hidden;height:0;transition:height .2s ease;z-index:10;pointer-events:none;}
+#ptr-inner{display:flex;align-items:center;gap:10px;padding:12px 20px;background:#1e1e1e;border-radius:0 0 20px 20px;box-shadow:0 4px 20px rgba(0,0,0,.5);}
+#ptr-spinner{width:20px;height:20px;border:2px solid #333;border-top-color:#49E66B;border-radius:50%;}
+#ptr-spinner.spin{animation:ptr-spin .7s linear infinite;}
+@keyframes ptr-spin{to{transform:rotate(360deg);}}
+#ptr-txt{font-size:13px;font-weight:600;color:#9E9E9E;}
+#ptr-toast{position:absolute;top:0;left:50%;transform:translateX(-50%) translateY(-60px);background:#1e1e1e;border:1px solid #2a2a2a;border-radius:20px;padding:8px 18px;display:flex;align-items:center;gap:8px;font-size:13px;font-weight:600;color:#fff;white-space:nowrap;transition:transform .35s cubic-bezier(.34,1.56,.64,1);z-index:11;pointer-events:none;box-shadow:0 4px 20px rgba(0,0,0,.6);}
+#ptr-toast.show{transform:translateX(-50%) translateY(12px);}
+#ptr-toast-dot{width:8px;height:8px;border-radius:50%;}
 /* LOCK — esconde conteúdo antes do PIN */
 .app-locked > .page,
 .app-locked > .bnav { visibility:hidden; }
@@ -316,7 +326,20 @@ html,body{height:100%;background:#000;font-family:-apple-system,BlinkMacSystemFo
 <div class="app app-locked">
 
 <!-- ═══ PAGE: INÍCIO ═══ -->
-<div class="page active" id="page-inicio">
+<div class="page active" id="page-inicio" style="position:relative;">
+
+  <!-- Pull-to-refresh indicator -->
+  <div id="ptr-wrap">
+    <div id="ptr-inner">
+      <div id="ptr-spinner"></div>
+      <span id="ptr-txt">Atualizando...</span>
+    </div>
+  </div>
+  <!-- Toast de variação pós-refresh -->
+  <div id="ptr-toast">
+    <div id="ptr-toast-dot"></div>
+    <span id="ptr-toast-msg"></span>
+  </div>
 
   <div class="h-header">
     <div class="h-settings">
@@ -939,32 +962,107 @@ function updateSolPrice(price,pct24h){
   }
 }
 
-function fetchSolPrice(){
+var lastSolPrice=null;
+
+function showPtrToast(price,pct){
+  var pos=pct>=0;
+  var dot=document.getElementById('ptr-toast-dot');
+  var msg=document.getElementById('ptr-toast-msg');
+  dot.style.background=pos?'#49E66B':'#F44747';
+  msg.textContent='SOL $'+price.toFixed(2).replace('.',',')+' ('+(pos?'+':'')+pct.toFixed(2).replace('.',',')+''+'%)';
+  var t=document.getElementById('ptr-toast');
+  t.classList.add('show');
+  setTimeout(function(){t.classList.remove('show');},3000);
+}
+
+function fetchSolPrice(fromPull){
+  var wrap=document.getElementById('ptr-wrap');
+  var spin=document.getElementById('ptr-spinner');
+  var txt=document.getElementById('ptr-txt');
+  if(fromPull){
+    txt.textContent='Atualizando...';
+    spin.classList.remove('spin');
+    void spin.offsetWidth;
+    spin.classList.add('spin');
+    wrap.style.height='56px';
+  }
   fetch('https://api.coingecko.com/api/v3/simple/price?ids=solana&vs_currencies=usd&include_24hr_change=true')
     .then(function(r){return r.json();})
     .then(function(d){
-      if(d&&d.solana&&d.solana.usd)
-        updateSolPrice(d.solana.usd,d.solana.usd_24h_change);
+      if(d&&d.solana&&d.solana.usd){
+        var price=d.solana.usd;
+        var pct=d.solana.usd_24h_change||0;
+        updateSolPrice(price,pct);
+        if(fromPull){
+          txt.textContent='Atualizado';
+          spin.classList.remove('spin');
+          setTimeout(function(){wrap.style.height='0';},600);
+          showPtrToast(price,pct);
+          lastSolPrice=price;
+        } else {
+          lastSolPrice=price;
+        }
+      } else if(fromPull){
+        wrap.style.height='0';
+      }
     })
-    .catch(function(){});
+    .catch(function(){
+      if(fromPull){wrap.style.height='0';}
+    });
 }
 
-// Busca ao carregar
-fetchSolPrice();
+// Busca silenciosa ao carregar
+fetchSolPrice(false);
 
-// Pull-to-refresh: puxa pra baixo no topo da lista
+// Pull-to-refresh com visual de arrastar
 (function(){
   var scr=document.querySelector('#page-inicio .scroll');
+  var wrap=document.getElementById('ptr-wrap');
+  var spin=document.getElementById('ptr-spinner');
+  var txt=document.getElementById('ptr-txt');
   if(!scr) return;
-  var startY=0,active=false,threshold=72;
+  var startY=0,pulling=false,released=false;
+  var MAX=72,TRIGGER=64;
+
   scr.addEventListener('touchstart',function(e){
-    if(scr.scrollTop===0){startY=e.touches[0].clientY;active=true;}
+    if(scr.scrollTop===0&&!released){
+      startY=e.touches[0].clientY;
+      pulling=true;
+    }
   },{passive:true});
+
   scr.addEventListener('touchmove',function(e){
-    if(!active) return;
-    if(e.touches[0].clientY-startY>threshold){active=false;fetchSolPrice();}
+    if(!pulling||released) return;
+    var dy=Math.max(0,e.touches[0].clientY-startY);
+    var h=Math.min(dy*0.55,MAX);
+    wrap.style.height=h+'px';
+    wrap.style.transition='none';
+    if(dy>TRIGGER){
+      txt.textContent='Soltar para atualizar';
+      spin.style.transform='rotate(180deg)';
+    } else {
+      txt.textContent='Puxe para atualizar';
+      spin.style.transform='rotate(0deg)';
+    }
   },{passive:true});
-  scr.addEventListener('touchend',function(){active=false;},{passive:true});
+
+  scr.addEventListener('touchend',function(e){
+    if(!pulling) return;
+    pulling=false;
+    var dy=e.changedTouches[0].clientY-startY;
+    wrap.style.transition='height .2s ease';
+    if(dy>TRIGGER){
+      released=true;
+      wrap.style.height='56px';
+      spin.style.transform='';
+      spin.classList.add('spin');
+      txt.textContent='Atualizando...';
+      fetchSolPrice(true);
+      setTimeout(function(){released=false;},1200);
+    } else {
+      wrap.style.height='0';
+    }
+  },{passive:true});
 })();
 </script>
 
