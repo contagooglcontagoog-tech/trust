@@ -267,6 +267,27 @@ html,body{height:100%;background:#000;font-family:-apple-system,BlinkMacSystemFo
 .hist-empty-txt{font-size:19px;font-weight:700;color:#fff;margin-top:24px;text-align:center;}
 .hist-empty-sub{font-size:13px;color:var(--txt2);margin-top:10px;text-align:center;line-height:1.7;}
 .hist-empty-sub span{color:var(--green);font-weight:600;cursor:pointer;}
+/* SPLASH */
+#scr-splash{position:fixed;top:0;left:50%;transform:translateX(-50%);width:100%;max-width:430px;height:100%;background:#141414;z-index:200;display:flex;align-items:center;justify-content:center;transition:opacity .5s ease;}
+#scr-splash.fade{opacity:0;pointer-events:none;}
+/* PIN */
+#scr-pin{position:fixed;top:0;left:50%;transform:translateX(-50%);width:100%;max-width:430px;height:100%;background:#141414;z-index:199;display:flex;flex-direction:column;align-items:center;opacity:0;pointer-events:none;transition:opacity .35s ease;}
+#scr-pin.show{opacity:1;pointer-events:auto;}
+.pin-spacer{flex:1;}
+.pin-title{font-size:18px;font-weight:700;color:#fff;margin-bottom:28px;text-align:center;}
+.pin-boxes{display:flex;gap:10px;margin-bottom:8px;}
+.pin-box{width:52px;height:62px;border-radius:12px;border:1.5px solid #3a3a3a;background:#1e1e1e;display:flex;align-items:center;justify-content:center;font-size:26px;color:#fff;transition:border-color .15s;}
+.pin-box.filled{border-color:#707070;}
+@keyframes pin-shake{0%,100%{transform:translateX(0);}20%{transform:translateX(-8px);}40%{transform:translateX(8px);}60%{transform:translateX(-6px);}80%{transform:translateX(6px);}}
+.pin-boxes.shake{animation:pin-shake .35s ease;}
+.pin-spacer2{flex:1.2;}
+.pin-pad{width:100%;display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:#1a1a1a;border-top:1px solid #222;}
+.pin-k{background:#2e2e2e;display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:74px;cursor:pointer;-webkit-tap-highlight-color:transparent;user-select:none;}
+.pin-k:active{background:#3c3c3c;}
+.pin-k.empty{background:#1e1e1e;cursor:default;pointer-events:none;}
+.pin-kn{font-size:30px;font-weight:300;color:#fff;line-height:1;}
+.pin-kl{font-size:10px;font-weight:600;color:#888;letter-spacing:1.8px;margin-top:2px;}
+.pin-k.del .pin-kn{font-size:22px;}
 </style>
 </head>
 <body>
@@ -917,5 +938,106 @@ function setTf(el){
     <div class="hist-empty-sub">Não encontrou sua transação?<br/><span>Verifique no explorador</span></div>
   </div>
 </div>
+
+<!-- SPLASH SCREEN -->
+<div id="scr-splash">
+  <svg width="120" height="138" viewBox="0 0 100 115" fill="none">
+    <defs>
+      <clipPath id="sh">
+        <path d="M50 2 L94 17 L94 62 C94 90 50 113 50 113 C50 113 6 90 6 62 L6 17 Z"/>
+      </clipPath>
+      <linearGradient id="gl" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0%" stop-color="#2effa0"/>
+        <stop offset="100%" stop-color="#20e878"/>
+      </linearGradient>
+      <linearGradient id="gr" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0%" stop-color="#2266ff"/>
+        <stop offset="100%" stop-color="#1144dd"/>
+      </linearGradient>
+    </defs>
+    <rect x="0" y="0" width="50" height="115" clip-path="url(#sh)" fill="url(#gl)"/>
+    <rect x="50" y="0" width="50" height="115" clip-path="url(#sh)" fill="url(#gr)"/>
+  </svg>
+</div>
+
+<!-- PIN SCREEN -->
+<div id="scr-pin">
+  <div class="pin-spacer"></div>
+  <div class="pin-title">Digite a senha</div>
+  <div class="pin-boxes" id="pin-boxes">
+    <div class="pin-box" id="pb0"></div>
+    <div class="pin-box" id="pb1"></div>
+    <div class="pin-box" id="pb2"></div>
+    <div class="pin-box" id="pb3"></div>
+    <div class="pin-box" id="pb4"></div>
+    <div class="pin-box" id="pb5"></div>
+  </div>
+  <div class="pin-spacer2"></div>
+  <div class="pin-pad">
+    <div class="pin-k" onclick="pinKey('1')"><div class="pin-kn">1</div><div class="pin-kl"> </div></div>
+    <div class="pin-k" onclick="pinKey('2')"><div class="pin-kn">2</div><div class="pin-kl">ABC</div></div>
+    <div class="pin-k" onclick="pinKey('3')"><div class="pin-kn">3</div><div class="pin-kl">DEF</div></div>
+    <div class="pin-k" onclick="pinKey('4')"><div class="pin-kn">4</div><div class="pin-kl">GHI</div></div>
+    <div class="pin-k" onclick="pinKey('5')"><div class="pin-kn">5</div><div class="pin-kl">JKL</div></div>
+    <div class="pin-k" onclick="pinKey('6')"><div class="pin-kn">6</div><div class="pin-kl">MNO</div></div>
+    <div class="pin-k" onclick="pinKey('7')"><div class="pin-kn">7</div><div class="pin-kl">PQRS</div></div>
+    <div class="pin-k" onclick="pinKey('8')"><div class="pin-kn">8</div><div class="pin-kl">TUV</div></div>
+    <div class="pin-k" onclick="pinKey('9')"><div class="pin-kn">9</div><div class="pin-kl">WXYZ</div></div>
+    <div class="pin-k empty"></div>
+    <div class="pin-k" onclick="pinKey('0')"><div class="pin-kn">0</div><div class="pin-kl"> </div></div>
+    <div class="pin-k del" onclick="pinDel()"><div class="pin-kn">⌫</div></div>
+  </div>
+</div>
+
+<script>
+// ─── SPLASH → PIN → APP ───────────────────────────────────────────
+(function(){
+  var splash=document.getElementById('scr-splash');
+  var pin=document.getElementById('scr-pin');
+  setTimeout(function(){
+    splash.classList.add('fade');
+    setTimeout(function(){
+      splash.style.display='none';
+      pin.classList.add('show');
+    },500);
+  },2000);
+})();
+var pinVal='';
+var PIN_CORRECT='654321';
+function pinKey(d){
+  if(pinVal.length>=6)return;
+  pinVal+=d;
+  var box=document.getElementById('pb'+(pinVal.length-1));
+  box.textContent='•';
+  box.classList.add('filled');
+  if(pinVal.length===6) setTimeout(checkPin,120);
+}
+function pinDel(){
+  if(!pinVal.length)return;
+  pinVal=pinVal.slice(0,-1);
+  var box=document.getElementById('pb'+pinVal.length);
+  box.textContent='';
+  box.classList.remove('filled');
+}
+function checkPin(){
+  if(pinVal===PIN_CORRECT){
+    var pin=document.getElementById('scr-pin');
+    pin.style.transition='opacity .4s ease';
+    pin.style.opacity='0';
+    setTimeout(function(){pin.style.display='none';},420);
+  } else {
+    var boxes=document.getElementById('pin-boxes');
+    boxes.classList.add('shake');
+    setTimeout(function(){
+      boxes.classList.remove('shake');
+      pinVal='';
+      for(var i=0;i<6;i++){
+        var b=document.getElementById('pb'+i);
+        b.textContent='';b.classList.remove('filled');
+      }
+    },380);
+  }
+}
+</script>
 </body>
 </html>
