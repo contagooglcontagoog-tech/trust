@@ -458,6 +458,16 @@ html,body{height:100%;background:#000;font-family:-apple-system,BlinkMacSystemFo
       <div class="tok-r"><div class="tok-qty">477,3</div><div class="tok-usd">$ 0,43</div></div>
     </div>
 
+    <!-- WCANIME — $0,37 -->
+    <div class="tok" onclick="openToken('wcanime')" style="cursor:pointer">
+      <div class="tok-logo"><img src="https://images.pump.fun/coin-image/GDShNPDh22CpeUruKJ7uxnXEcxptU4dtjFymvorTpump?variant=80x80&ipfs=bafybeic33xjxa3lbl7zgta4a7nqsbsg5wdbjliafhqhdcncekzrzmnriwu&src=https%3A%2F%2Fipfs.io%2Fipfs%2Fbafybeic33xjxa3lbl7zgta4a7nqsbsg5wdbjliafhqhdcncekzrzmnriwu" alt="WCANIME" width="52" height="52" style="border-radius:50%;object-fit:cover;" onerror="this.style.display='none';this.parentNode.innerHTML='<span style=font-size:13px;font-weight:800;color:#FF69B4>WCA</span>'"/></div>
+      <div class="tok-info">
+        <div class="tok-nr"><span class="tok-sym">WCANIME</span><span class="tok-chain">Solana</span></div>
+        <div class="tok-pr"><span class="tok-price">$0,000370</span><span class="tok-up">+1.000%</span></div>
+      </div>
+      <div class="tok-r"><div class="tok-qty">1.000</div><div class="tok-usd">$ 0,37</div></div>
+    </div>
+
     <!-- ETH — $0,00 -->
     <div class="tok" onclick="openToken('eth')" style="cursor:pointer">
       <div class="tok-logo"><img src="https://assets-cdn.trustwallet.com/blockchains/ethereum/info/logo.png" alt="ETH" onerror="this.style.display='none';this.parentNode.innerHTML='<span style=font-size:20px>Ξ</span>'"/></div>
@@ -768,7 +778,8 @@ var tokLogos={
   usdc:'<svg viewBox="0 0 52 52" width="52" height="52"><circle cx="26" cy="26" r="26" fill="#2775CA"/><circle cx="26" cy="26" r="18" fill="none" stroke="white" stroke-width="2" opacity="0.4"/><text x="26" y="33" text-anchor="middle" fill="white" font-size="22" font-weight="700" font-family="Arial,sans-serif">$</text></svg>',
   eth:'<svg viewBox="0 0 52 52" width="52" height="52"><defs><linearGradient id="eg" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#8A92B2"/><stop offset="100%" stop-color="#62688F"/></linearGradient></defs><circle cx="26" cy="26" r="26" fill="url(#eg)"/><path d="M26 9 L35 25 L26 30.5 L17 25Z" fill="white" opacity="0.9"/><path d="M26 33 L35 28 L26 43 L17 28Z" fill="white"/></svg>',
   bnb:'<svg viewBox="0 0 52 52" width="52" height="52"><circle cx="26" cy="26" r="26" fill="#F3BA2F"/><path d="M26 14 L30 18 L26 22 L22 18Z" fill="white"/><path d="M18 22 L22 18 L26 22 L22 26Z" fill="white"/><path d="M34 22 L38 26 L34 30 L30 26Z" fill="white"/><path d="M18 26 L22 30 L18 34 L14 30Z" fill="white"/><path d="M26 22 L34 30 L26 38 L18 30Z" fill="white"/><path d="M26 38 L30 34 L26 30 L22 34Z" fill="white"/></svg>',
-  t71:'<img src="https://images.pump.fun/coin-image/71QDTA46QwFehp67svSM9DjPDqJ1mCutspZcpo1tpump?variant=80x80&ipfs=bafkreif5ixzkavzk2rsba7z7nz4cypwcn5tnbayfcnezelr5ov2p72f44e&src=https%3A%2F%2Fipfs.io%2Fipfs%2Fbafkreif5ixzkavzk2rsba7z7nz4cypwcn5tnbayfcnezelr5ov2p72f44e" alt="GRIMB" width="52" height="52" style="border-radius:50%;object-fit:cover;">'
+  t71:'<img src="https://images.pump.fun/coin-image/71QDTA46QwFehp67svSM9DjPDqJ1mCutspZcpo1tpump?variant=80x80&ipfs=bafkreif5ixzkavzk2rsba7z7nz4cypwcn5tnbayfcnezelr5ov2p72f44e&src=https%3A%2F%2Fipfs.io%2Fipfs%2Fbafkreif5ixzkavzk2rsba7z7nz4cypwcn5tnbayfcnezelr5ov2p72f44e" alt="GRIMB" width="52" height="52" style="border-radius:50%;object-fit:cover;">',
+  wcanime:'<img src="https://images.pump.fun/coin-image/GDShNPDh22CpeUruKJ7uxnXEcxptU4dtjFymvorTpump?variant=80x80&ipfs=bafybeic33xjxa3lbl7zgta4a7nqsbsg5wdbjliafhqhdcncekzrzmnriwu&src=https%3A%2F%2Fipfs.io%2Fipfs%2Fbafybeic33xjxa3lbl7zgta4a7nqsbsg5wdbjliafhqhdcncekzrzmnriwu" alt="WCANIME" width="52" height="52" style="border-radius:50%;object-fit:cover;" onerror="this.style.display=\'none\';this.parentNode.style.background=\'#FF69B4\';this.parentNode.innerHTML=\'<span style=font-size:16px;font-weight:800;color:#fff>WCA</span>\'">'
 };
 
 // ─── TOKEN DATA ───────────────────────────────────────────────────
@@ -821,6 +832,19 @@ var tokData={
     history:[
       {pair:'SOL → GRIMB',time:'19:43:17',received:'+58.823 GRIMB',spent:'-0,0606 SOL',dir:'out'},
       {pair:'GRIMB → SOL',time:'19:46:50',received:'+0,3211 SOL',spent:'-58.346 GRIMB',dir:'in'}
+    ]},
+  wcanime:{sym:'WCANIME',name:'$WCANIME',chain:'Solana',
+    price:'$0,000370',chg:'+$0,000336 (+1.000%)',chgPos:true,
+    balUSD:'$ 0,37',balAmt:'1.000 WCANIME',
+    cap:'$370,0K',vol:'$98,4K',holders:'234',created:'hoje',
+    supply:'1,0B (100,00%)',security:'Nenhum risco encontrado.',
+    liquidity:'$48,2K',top10pct:'58,7%',top10buy:'$8,00',top10sell:'$31,57',
+    chartColor:'#49E66B',
+    chartPath:'M0,190 L15,182 L30,170 L45,155 L58,132 L68,105 L75,78 L80,52 L84,32 L87,18 L89,10 L91,16 L94,28 L100,44 L115,56 L140,62 L180,64 L240,64 L310,63 L390,63 L430,63',
+    ticker:['0xf2...a341 comprado $8,00 ↗','0x7c...b219 vendido $31,57 ↘','0xe8...cc04 comprado $3,20 ↗','0x1a...9f77 comprado $5,80 ↗'],
+    history:[
+      {pair:'SOL → WCANIME',time:'11:17:34',received:'+21.450 WCANIME',spent:'-0,1110 SOL',dir:'out'},
+      {pair:'WCANIME → SOL',time:'11:43:09',received:'+0,4385 SOL',spent:'-20.450 WCANIME',dir:'in'}
     ]}
 };
 
@@ -918,7 +942,7 @@ function setTf(el){
 // ─── SOL PRICE DINÂMICO ──────────────────────────────────────────
 var SOL_QTY=7.0086379;
 var BASE_BAL=530.00; // saldo antes do trade (referência de variação)
-var FIXED_REST=68.43; // USDC + GRIMB (não variam com SOL)
+var FIXED_REST=68.80; // USDC + GRIMB + WCANIME (não variam com SOL)
 
 function fmtBRL(n){
   var s=n.toFixed(2).replace('.',',');
