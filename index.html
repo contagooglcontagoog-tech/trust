@@ -435,7 +435,7 @@ html,body{height:100%;background:#000;font-family:-apple-system,BlinkMacSystemFo
         <div class="tok-nr"><span class="tok-sym">SOL</span><span class="tok-chain">Solana</span></div>
         <div class="tok-pr"><span class="tok-price" id="sol-tok-price">$ 71,99</span><span class="tok-up" id="sol-tok-chg">+2.14%</span></div>
       </div>
-      <div class="tok-r"><div class="tok-qty">7,7930182</div><div class="tok-usd" id="sol-tok-usd">$ 535,77</div></div>
+      <div class="tok-r"><div class="tok-qty">8,3676182</div><div class="tok-usd" id="sol-tok-usd">$ 602,36</div></div>
     </div>
 
     <!-- USDC — $68,00 -->
@@ -466,6 +466,16 @@ html,body{height:100%;background:#000;font-family:-apple-system,BlinkMacSystemFo
         <div class="tok-pr"><span class="tok-price">$0,000370</span><span class="tok-up">+1.000%</span></div>
       </div>
       <div class="tok-r"><div class="tok-qty">1.000</div><div class="tok-usd">$ 0,37</div></div>
+    </div>
+
+    <!-- EC43 — $0,53 -->
+    <div class="tok" onclick="openToken('ec43')" style="cursor:pointer">
+      <div class="tok-logo"><img src="https://images.pump.fun/coin-image/382YojVQdcb5DV1QCj1KdN4XPVZebS22XAfDr1EMpump?variant=80x80&src=https%3A%2F%2Faxiomtrading-v2.axiom-cdn.io%2F8JdjmcF8JQLPpbaiiyS6xhd5fYT2GLeNygTq8Twppump.webp" alt="EC43" width="52" height="52" style="border-radius:50%;object-fit:cover;" onerror="this.style.display='none';this.parentNode.innerHTML='<span style=font-size:13px;font-weight:800;color:#F7B731>EC43</span>'"/></div>
+      <div class="tok-info">
+        <div class="tok-nr"><span class="tok-sym">EC43</span><span class="tok-chain">Solana</span></div>
+        <div class="tok-pr"><span class="tok-price">$0,000110</span><span class="tok-dn">-72,14%</span></div>
+      </div>
+      <div class="tok-r"><div class="tok-qty">4.818,18</div><div class="tok-usd">$ 0,53</div></div>
     </div>
 
     <!-- ETH — $0,00 -->
@@ -779,7 +789,8 @@ var tokLogos={
   eth:'<svg viewBox="0 0 52 52" width="52" height="52"><defs><linearGradient id="eg" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#8A92B2"/><stop offset="100%" stop-color="#62688F"/></linearGradient></defs><circle cx="26" cy="26" r="26" fill="url(#eg)"/><path d="M26 9 L35 25 L26 30.5 L17 25Z" fill="white" opacity="0.9"/><path d="M26 33 L35 28 L26 43 L17 28Z" fill="white"/></svg>',
   bnb:'<svg viewBox="0 0 52 52" width="52" height="52"><circle cx="26" cy="26" r="26" fill="#F3BA2F"/><path d="M26 14 L30 18 L26 22 L22 18Z" fill="white"/><path d="M18 22 L22 18 L26 22 L22 26Z" fill="white"/><path d="M34 22 L38 26 L34 30 L30 26Z" fill="white"/><path d="M18 26 L22 30 L18 34 L14 30Z" fill="white"/><path d="M26 22 L34 30 L26 38 L18 30Z" fill="white"/><path d="M26 38 L30 34 L26 30 L22 34Z" fill="white"/></svg>',
   t71:'<img src="https://images.pump.fun/coin-image/71QDTA46QwFehp67svSM9DjPDqJ1mCutspZcpo1tpump?variant=80x80&ipfs=bafkreif5ixzkavzk2rsba7z7nz4cypwcn5tnbayfcnezelr5ov2p72f44e&src=https%3A%2F%2Fipfs.io%2Fipfs%2Fbafkreif5ixzkavzk2rsba7z7nz4cypwcn5tnbayfcnezelr5ov2p72f44e" alt="GRIMB" width="52" height="52" style="border-radius:50%;object-fit:cover;">',
-  wcanime:'<img src="https://images.pump.fun/coin-image/GDShNPDh22CpeUruKJ7uxnXEcxptU4dtjFymvorTpump?variant=80x80&ipfs=bafybeic33xjxa3lbl7zgta4a7nqsbsg5wdbjliafhqhdcncekzrzmnriwu&src=https%3A%2F%2Fipfs.io%2Fipfs%2Fbafybeic33xjxa3lbl7zgta4a7nqsbsg5wdbjliafhqhdcncekzrzmnriwu" alt="WCANIME" width="52" height="52" style="border-radius:50%;object-fit:cover;" onerror="this.style.display=\'none\';this.parentNode.style.background=\'#FF69B4\';this.parentNode.innerHTML=\'<span style=font-size:16px;font-weight:800;color:#fff>WCA</span>\'">'
+  wcanime:'<img src="https://images.pump.fun/coin-image/GDShNPDh22CpeUruKJ7uxnXEcxptU4dtjFymvorTpump?variant=80x80&ipfs=bafybeic33xjxa3lbl7zgta4a7nqsbsg5wdbjliafhqhdcncekzrzmnriwu&src=https%3A%2F%2Fipfs.io%2Fipfs%2Fbafybeic33xjxa3lbl7zgta4a7nqsbsg5wdbjliafhqhdcncekzrzmnriwu" alt="WCANIME" width="52" height="52" style="border-radius:50%;object-fit:cover;" onerror="this.style.display=\'none\';this.parentNode.style.background=\'#FF69B4\';this.parentNode.innerHTML=\'<span style=font-size:16px;font-weight:800;color:#fff>WCA</span>\'">',
+  ec43:'<img src="https://images.pump.fun/coin-image/382YojVQdcb5DV1QCj1KdN4XPVZebS22XAfDr1EMpump?variant=80x80&src=https%3A%2F%2Faxiomtrading-v2.axiom-cdn.io%2F8JdjmcF8JQLPpbaiiyS6xhd5fYT2GLeNygTq8Twppump.webp" alt="EC43" width="52" height="52" style="border-radius:50%;object-fit:cover;" onerror="this.style.display=\'none\';this.parentNode.innerHTML=\'<span style=font-size:13px;font-weight:800;color:#F7B731>EC43</span>\'">'
 };
 
 // ─── TOKEN DATA ───────────────────────────────────────────────────
@@ -794,6 +805,8 @@ var tokData={
     chartPath:'M0,145 L25,138 L50,148 L75,132 L100,120 L125,108 L150,95 L175,85 L200,78 L225,68 L250,58 L275,50 L300,42 L325,35 L350,28 L375,22 L400,16 L420,12 L430,10',
     ticker:['0xd8...1b26 comprado $1,03 SOL ↗','0xa3...f221 comprado $0,85 SOL ↗','0x9b...44cc vendido $2,10 SOL ↘','0xe1...77ab comprado $1,40 SOL ↗'],
     history:[
+      {pair:'EC43 → SOL',time:'10:14:33',received:'+0,7830 SOL',spent:'-512.423 EC43',dir:'in'},
+      {pair:'SOL → EC43',time:'09:43:17',received:'+517.241 EC43',spent:'-0,2084 SOL',dir:'out'},
       {pair:'WCANIME → SOL',time:'11:43:09',received:'+0,4385 SOL',spent:'-20.450 WCANIME',dir:'in'},
       {pair:'SOL → WCANIME',time:'11:17:34',received:'+21.450 WCANIME',spent:'-0,1110 SOL',dir:'out'},
       {pair:'GRIMB → SOL',time:'19:46:50',received:'+0,3211 SOL',spent:'-58.346 GRIMB',dir:'in'},
@@ -851,6 +864,19 @@ var tokData={
     history:[
       {pair:'SOL → WCANIME',time:'11:17:34',received:'+21.450 WCANIME',spent:'-0,1110 SOL',dir:'out'},
       {pair:'WCANIME → SOL',time:'11:43:09',received:'+0,4385 SOL',spent:'-20.450 WCANIME',dir:'in'}
+    ]},
+  ec43:{sym:'EC43',name:'ElegantCombination43',chain:'Solana',
+    price:'$0,000110',chg:'-$0,000081 (72,14%)',chgPos:false,
+    balUSD:'$ 0,53',balAmt:'4.818,18 EC43',
+    cap:'$110K',vol:'$8,2K',holders:'142',created:'24 de jun. de 2026',
+    supply:'1,0B (100,00%)',security:'Token criado há menos de 24h. Verificar contrato.',
+    liquidity:'$4,1K',top10pct:'62,3%',top10buy:'$1.240,00',top10sell:'$4.820,00',
+    chartColor:'#F44747',
+    chartPath:'M0,160 L20,155 L40,148 L55,135 L65,110 L72,80 L78,45 L82,20 L86,12 L90,22 L96,38 L104,58 L114,82 L126,108 L140,128 L156,142 L175,150 L200,154 L230,156 L270,157 L320,158 L380,158 L430,159',
+    ticker:['6Rx2...cA1B comprado $248,00 EC43 ↗','9sKw...bF3E vendido $890,00 EC43 ↘','3mPq...nA7C vendido $1.420,00 EC43 ↘','5tLy...xR2D comprado $64,00 EC43 ↗'],
+    history:[
+      {pair:'SOL → EC43',time:'09:43:17',received:'+517.241 EC43',spent:'-0,2084 SOL',dir:'out'},
+      {pair:'EC43 → SOL',time:'10:14:33',received:'+0,7830 SOL',spent:'-512.423 EC43',dir:'in'}
     ]}
 };
 
@@ -946,9 +972,9 @@ function setTf(el){
 }
 
 // ─── SOL PRICE DINÂMICO ──────────────────────────────────────────
-var SOL_QTY=7.7930182;
-var BASE_BAL=573.00; // saldo ontem (referência de variação diária)
-var FIXED_REST=68.80; // USDC + GRIMB + WCANIME (não variam com SOL)
+var SOL_QTY=8.3676182; // +0,5746 SOL do trade EC43 → SOL (lucro $41,50)
+var BASE_BAL=623.00; // saldo ontem (referência de variação diária)
+var FIXED_REST=69.33; // USDC + GRIMB + WCANIME + EC43 (não variam com SOL)
 
 function fmtBRL(n){
   var s=n.toFixed(2).replace('.',',');
