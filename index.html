@@ -435,7 +435,7 @@ html,body{height:100%;background:#000;font-family:-apple-system,BlinkMacSystemFo
         <div class="tok-nr"><span class="tok-sym">SOL</span><span class="tok-chain">Solana</span></div>
         <div class="tok-pr"><span class="tok-price" id="sol-tok-price">$ 71,99</span><span class="tok-up" id="sol-tok-chg">+2.14%</span></div>
       </div>
-      <div class="tok-r"><div class="tok-qty">8,3676182</div><div class="tok-usd" id="sol-tok-usd">$ 602,36</div></div>
+      <div class="tok-r"><div class="tok-qty">9,5779182</div><div class="tok-usd" id="sol-tok-usd">$ 633,59</div></div>
     </div>
 
     <!-- USDC — $68,00 -->
@@ -476,6 +476,16 @@ html,body{height:100%;background:#000;font-family:-apple-system,BlinkMacSystemFo
         <div class="tok-pr"><span class="tok-price">$0,000110</span><span class="tok-dn">-72,14%</span></div>
       </div>
       <div class="tok-r"><div class="tok-qty">4.818,18</div><div class="tok-usd">$ 0,53</div></div>
+    </div>
+
+    <!-- Chad — $0,00 (realizado) -->
+    <div class="tok" onclick="openToken('chad')" style="cursor:pointer">
+      <div class="tok-logo"><img src="https://images.pump.fun/coin-image/79j3XBKZsBbr8ofv12qmPniMb9gbP8aaGvVcEtJDpump?variant=80x80&ipfs=bafkreigjogls7xbs23jy275np3sjcou7wxwa6me5hmsas3gwvv6dpbbdue&src=https%3A%2F%2Fipfs.io%2Fipfs%2Fbafkreigjogls7xbs23jy275np3sjcou7wxwa6me5hmsas3gwvv6dpbbdue" alt="Chad" width="52" height="52" style="border-radius:50%;object-fit:cover;" onerror="this.style.display='none';this.parentNode.innerHTML='<span style=font-size:13px;font-weight:800;color:#49E66B>CHAD</span>'"/></div>
+      <div class="tok-info">
+        <div class="tok-nr"><span class="tok-sym">Chad</span><span class="tok-chain">Solana</span></div>
+        <div class="tok-pr"><span class="tok-price">$0,0000079</span><span class="tok-up">+462%</span></div>
+      </div>
+      <div class="tok-r"><div class="tok-qty">0</div><div class="tok-usd">$ 0,00</div></div>
     </div>
 
     <!-- ETH — $0,00 -->
@@ -790,14 +800,15 @@ var tokLogos={
   bnb:'<svg viewBox="0 0 52 52" width="52" height="52"><circle cx="26" cy="26" r="26" fill="#F3BA2F"/><path d="M26 14 L30 18 L26 22 L22 18Z" fill="white"/><path d="M18 22 L22 18 L26 22 L22 26Z" fill="white"/><path d="M34 22 L38 26 L34 30 L30 26Z" fill="white"/><path d="M18 26 L22 30 L18 34 L14 30Z" fill="white"/><path d="M26 22 L34 30 L26 38 L18 30Z" fill="white"/><path d="M26 38 L30 34 L26 30 L22 34Z" fill="white"/></svg>',
   t71:'<img src="https://images.pump.fun/coin-image/71QDTA46QwFehp67svSM9DjPDqJ1mCutspZcpo1tpump?variant=80x80&ipfs=bafkreif5ixzkavzk2rsba7z7nz4cypwcn5tnbayfcnezelr5ov2p72f44e&src=https%3A%2F%2Fipfs.io%2Fipfs%2Fbafkreif5ixzkavzk2rsba7z7nz4cypwcn5tnbayfcnezelr5ov2p72f44e" alt="GRIMB" width="52" height="52" style="border-radius:50%;object-fit:cover;">',
   wcanime:'<img src="https://images.pump.fun/coin-image/GDShNPDh22CpeUruKJ7uxnXEcxptU4dtjFymvorTpump?variant=80x80&ipfs=bafybeic33xjxa3lbl7zgta4a7nqsbsg5wdbjliafhqhdcncekzrzmnriwu&src=https%3A%2F%2Fipfs.io%2Fipfs%2Fbafybeic33xjxa3lbl7zgta4a7nqsbsg5wdbjliafhqhdcncekzrzmnriwu" alt="WCANIME" width="52" height="52" style="border-radius:50%;object-fit:cover;" onerror="this.style.display=\'none\';this.parentNode.style.background=\'#FF69B4\';this.parentNode.innerHTML=\'<span style=font-size:16px;font-weight:800;color:#fff>WCA</span>\'">',
-  ec43:'<img src="https://images.pump.fun/coin-image/382YojVQdcb5DV1QCj1KdN4XPVZebS22XAfDr1EMpump?variant=80x80&src=https%3A%2F%2Faxiomtrading-v2.axiom-cdn.io%2F8JdjmcF8JQLPpbaiiyS6xhd5fYT2GLeNygTq8Twppump.webp" alt="EC43" width="52" height="52" style="border-radius:50%;object-fit:cover;" onerror="this.style.display=\'none\';this.parentNode.innerHTML=\'<span style=font-size:13px;font-weight:800;color:#F7B731>EC43</span>\'">'
+  ec43:'<img src="https://images.pump.fun/coin-image/382YojVQdcb5DV1QCj1KdN4XPVZebS22XAfDr1EMpump?variant=80x80&src=https%3A%2F%2Faxiomtrading-v2.axiom-cdn.io%2F8JdjmcF8JQLPpbaiiyS6xhd5fYT2GLeNygTq8Twppump.webp" alt="EC43" width="52" height="52" style="border-radius:50%;object-fit:cover;" onerror="this.style.display=\'none\';this.parentNode.innerHTML=\'<span style=font-size:13px;font-weight:800;color:#F7B731>EC43</span>\'">',
+  chad:'<img src="https://images.pump.fun/coin-image/79j3XBKZsBbr8ofv12qmPniMb9gbP8aaGvVcEtJDpump?variant=80x80&ipfs=bafkreigjogls7xbs23jy275np3sjcou7wxwa6me5hmsas3gwvv6dpbbdue&src=https%3A%2F%2Fipfs.io%2Fipfs%2Fbafkreigjogls7xbs23jy275np3sjcou7wxwa6me5hmsas3gwvv6dpbbdue" alt="Chad" width="52" height="52" style="border-radius:50%;object-fit:cover;" onerror="this.style.display=\'none\';this.parentNode.innerHTML=\'<span style=font-size:13px;font-weight:800;color:#49E66B>CHAD</span>\'">'
 };
 
 // ─── TOKEN DATA ───────────────────────────────────────────────────
 var tokData={
   sol:{sym:'SOL',name:'Solana',chain:'Solana',
     price:'$71,99',chg:'+$1,52 (2,14%)',chgPos:true,
-    balUSD:'$ 535,77',balAmt:'7,7930182 SOL',
+    balUSD:'$ 633,59',balAmt:'9,5779182 SOL',
     cap:'$84,72B',vol:'$3,12B',holders:'-',created:'mar. de 2020',
     supply:'514,23M (100,00%)',security:'Nenhum risco encontrado.',
     liquidity:'$1,24B',top10pct:'-',top10buy:'-',top10sell:'-',
@@ -885,6 +896,19 @@ var tokData={
     history:[
       {pair:'SOL → EC43',time:'09:43:17',received:'+517.241 EC43',spent:'-0,2084 SOL',dir:'out'},
       {pair:'EC43 → SOL',time:'10:14:33',received:'+0,7830 SOL',spent:'-512.423 EC43',dir:'in'}
+    ]},
+  chad:{sym:'Chad',name:'Yes chad',chain:'Solana',
+    price:'$0,0000079',chg:'+$0,0000067 (462%)',chgPos:true,
+    balUSD:'$ 0,00',balAmt:'0 Chad',
+    cap:'$7,9K',vol:'$22,5K',holders:'89',created:'hoje',
+    supply:'1,0B (100,00%)',security:'Token criado há menos de 24h. Verificar contrato.',
+    liquidity:'$3,2K',top10pct:'54,1%',top10buy:'$22,50',top10sell:'$0,00',
+    chartColor:'#49E66B',
+    chartPath:'M0,180 L20,175 L40,168 L55,150 L65,120 L72,85 L76,50 L79,22 L82,8 L85,18 L89,35 L95,60 L105,88 L118,115 L135,138 L155,155 L180,165 L215,170 L260,172 L320,172 L390,172 L430,172',
+    ticker:['8Kz3...m2N7 comprado $4,00 Chad ↗','2Wq9...p5R1 vendido $22,50 Chad ↘','5Jx4...a8C6 comprado $1,80 Chad ↗','3Vy7...d1F2 vendido $9,40 Chad ↘'],
+    history:[
+      {pair:'SOL → Chad',time:'15:24:48',received:'+2847312 Chad',spent:'-0.0605 SOL',dir:'out'},
+      {pair:'Chad → SOL',time:'15:28:48',received:'+0.3402 SOL',spent:'-2847312 Chad',dir:'in'}
     ]}
 };
 
@@ -981,7 +1005,7 @@ function setTf(el){
 
 // ─── SOL PRICE DINÂMICO ──────────────────────────────────────────
 var SOL_QTY=9.5779182;
-var BASE_BAL=623.00; // saldo ontem (referência de variação diária)
+var BASE_BAL=684.00; // saldo ontem (referência de variação diária)
 var FIXED_REST=68.91; // USDC $68 + GRIMB ~$0 + WCANIME $0,38 + EC43 $0,53
 
 function fmtBRL(n){
