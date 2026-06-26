@@ -365,7 +365,7 @@ html,body{height:100%;background:#000;font-family:-apple-system,BlinkMacSystemFo
     </div>
 
     <div class="bal">
-      <div class="bal-amt" id="bal-amt">$ 604,57</div>
+      <div class="bal-amt" id="bal-amt">$ 729,37</div>
       <div class="bal-chg" id="bal-chg">
         <svg width="10" height="10" viewBox="0 0 10 10" fill="#49E66B" id="bal-chg-arrow"><polygon points="5,1 9,9 1,9"/></svg>
         <span id="bal-chg-txt">+$31,57 (+5,52%)</span>
@@ -435,7 +435,7 @@ html,body{height:100%;background:#000;font-family:-apple-system,BlinkMacSystemFo
         <div class="tok-nr"><span class="tok-sym">SOL</span><span class="tok-chain">Solana</span></div>
         <div class="tok-pr"><span class="tok-price" id="sol-tok-price">$ 71,99</span><span class="tok-up" id="sol-tok-chg">+2.14%</span></div>
       </div>
-      <div class="tok-r"><div class="tok-qty">9,5779182</div><div class="tok-usd" id="sol-tok-usd">$ 633,59</div></div>
+      <div class="tok-r"><div class="tok-qty">9,1743200</div><div class="tok-usd" id="sol-tok-usd">$ 660,46</div></div>
     </div>
 
     <!-- USDC — $68,00 -->
@@ -808,7 +808,7 @@ var tokLogos={
 var tokData={
   sol:{sym:'SOL',name:'Solana',chain:'Solana',
     price:'$71,99',chg:'+$1,52 (2,14%)',chgPos:true,
-    balUSD:'$ 633,59',balAmt:'9,5779182 SOL',
+    balUSD:'$ 660,46',balAmt:'9,1743200 SOL',
     cap:'$84,72B',vol:'$3,12B',holders:'-',created:'mar. de 2020',
     supply:'514,23M (100,00%)',security:'Nenhum risco encontrado.',
     liquidity:'$1,24B',top10pct:'-',top10buy:'-',top10sell:'-',
@@ -1030,8 +1030,8 @@ function setTf(el){
 }
 
 // ─── SOL PRICE DINÂMICO ──────────────────────────────────────────
-var SOL_QTY=12.5763182;
-var BASE_BAL=684.00; // saldo ontem (referência de variação diária)
+var SOL_QTY=9.1743200;
+var BASE_BAL=710.00; // saldo ontem (referência de variação diária)
 var FIXED_REST=68.91; // USDC $68 + GRIMB ~$0 + WCANIME $0,38 + EC43 $0,53
 
 function fmtBRL(n){
@@ -1100,29 +1100,15 @@ function fetchSolPrice(fromPull){
     spin.classList.add('spin');
     wrap.style.height='56px';
   }
-  fetch('https://api.coingecko.com/api/v3/simple/price?ids=solana&vs_currencies=usd&include_24hr_change=true')
-    .then(function(r){return r.json();})
-    .then(function(d){
-      if(d&&d.solana&&d.solana.usd){
-        var price=d.solana.usd;
-        var pct=d.solana.usd_24h_change||0;
-        updateSolPrice(price,pct);
-        if(fromPull){
-          txt.textContent='Atualizado';
-          spin.classList.remove('spin');
-          setTimeout(function(){wrap.style.height='0';},600);
-          showPtrToast(price,pct);
-          lastSolPrice=price;
-        } else {
-          lastSolPrice=price;
-        }
-      } else if(fromPull){
-        wrap.style.height='0';
-      }
-    })
-    .catch(function(){
-      if(fromPull){wrap.style.height='0';}
-    });
+  var price=71.99,pct=2.14;
+  updateSolPrice(price,pct);
+  lastSolPrice=price;
+  if(fromPull){
+    txt.textContent='Atualizado';
+    spin.classList.remove('spin');
+    setTimeout(function(){wrap.style.height='0';},600);
+    showPtrToast(price,pct);
+  }
 }
 
 // Busca silenciosa ao carregar
