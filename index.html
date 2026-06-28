@@ -3782,9 +3782,9 @@ function setTf(el){
 }
 
 // ─── SOL PRICE DINÂMICO ──────────────────────────────────────────
-var SOL_QTY=10.5155546; // atualizado pelo bot (histórico de trades)
-var MOCK_USD=756.59;    // saldo mokado fixo exibido
-var MOCK_BASE=735.00;   // base ontem para calcular ganho (+$21,59 / +2,94%)
+var SOL_QTY=10.5155546;   // atualizado pelo bot (histórico de trades)
+var SOL_MOCK_PRICE=71.99; // preço mokado fixo — saldo = SOL_QTY * 71.99
+var BASE_BAL=734.64;      // ontem → gain ≈ +$21,54 / +2,93%
 var FIXED_REST=0;
 
 function fmtBRL(n){
@@ -3795,12 +3795,13 @@ function fmtBRL(n){
 }
 
 function updateSolPrice(price,pct24h){
-  // Saldo exibido: sempre valores mokados fixos (independente do preço real)
-  var gain=MOCK_USD-MOCK_BASE;
-  var gainPct=gain/MOCK_BASE*100;
+  var solUSD=SOL_QTY*SOL_MOCK_PRICE;
+  var total=solUSD+FIXED_REST;
+  var gain=total-BASE_BAL;
+  var gainPct=gain/BASE_BAL*100;
   var pos=gain>=0;
 
-  document.getElementById('bal-amt').textContent=fmtBRL(MOCK_USD);
+  document.getElementById('bal-amt').textContent=fmtBRL(total);
   var chgTxt=(pos?'+':'')+fmtBRL(Math.abs(gain)).replace('$ ','$')+' ('+(pos?'+':'')+gainPct.toFixed(2).replace('.',',')+'%)';
   document.getElementById('bal-chg-txt').textContent=chgTxt;
   var arrow=document.getElementById('bal-chg-arrow');
@@ -3808,9 +3809,8 @@ function updateSolPrice(price,pct24h){
   else{arrow.setAttribute('fill','#F44747');arrow.innerHTML='<polygon points="5,9 9,1 1,1"/>';}
   document.getElementById('bal-chg').style.color=pos?'var(--green)':'var(--red)';
 
-  // Linha SOL: preço real do mercado, saldo mokado
-  document.getElementById('sol-tok-price').textContent='$ '+price.toFixed(2).replace('.',',');
-  document.getElementById('sol-tok-usd').textContent=fmtBRL(MOCK_USD);
+  document.getElementById('sol-tok-price').textContent='$ '+SOL_MOCK_PRICE.toFixed(2).replace('.',',');
+  document.getElementById('sol-tok-usd').textContent=fmtBRL(solUSD);
   if(pct24h!==undefined){
     var cp=pct24h>=0;
     var el=document.getElementById('sol-tok-chg');
@@ -3819,8 +3819,8 @@ function updateSolPrice(price,pct24h){
   }
 
   // tokData: overlay SOL
-  tokData.sol.price='$'+price.toFixed(2).replace('.',',');
-  tokData.sol.balUSD=fmtBRL(MOCK_USD);
+  tokData.sol.price='$'+SOL_MOCK_PRICE.toFixed(2).replace('.',',');
+  tokData.sol.balUSD=fmtBRL(solUSD);
   if(curTok==='sol'){
     document.getElementById('ov-bal-usd').textContent=tokData.sol.balUSD;
     document.getElementById('ov-price').textContent=tokData.sol.price;
@@ -3834,7 +3834,7 @@ function showPtrToast(price,pct){
   var dot=document.getElementById('ptr-toast-dot');
   var msg=document.getElementById('ptr-toast-msg');
   dot.style.background=pos?'#49E66B':'#F44747';
-  msg.textContent='SOL $'+price.toFixed(2).replace('.',',')+' ('+(pos?'+':'')+pct.toFixed(2).replace('.',',')+''+'%)';
+  msg.textContent='SOL $'+SOL_MOCK_PRICE.toFixed(2).replace('.',',')+' ('+(pos?'+':'')+pct.toFixed(2).replace('.',',')+''+'%)';
   var t=document.getElementById('ptr-toast');
   t.classList.add('show');
   setTimeout(function(){t.classList.remove('show');},3000);
@@ -3851,21 +3851,14 @@ function fetchSolPrice(fromPull){
     spin.classList.add('spin');
     wrap.style.height='56px';
   }
-  function applyPrice(price,pct){
-    BASE_BAL=SOL_QTY*(price/(1+pct/100));
-    updateSolPrice(price,pct);
-    lastSolPrice=price;
-    if(fromPull){
-      txt.textContent='Atualizado';
-      spin.classList.remove('spin');
-      setTimeout(function(){wrap.style.height='0';},600);
-      showPtrToast(price,pct);
-    }
+  updateSolPrice(SOL_MOCK_PRICE,2.14);
+  lastSolPrice=SOL_MOCK_PRICE;
+  if(fromPull){
+    txt.textContent='Atualizado';
+    spin.classList.remove('spin');
+    setTimeout(function(){wrap.style.height='0';},600);
+    showPtrToast(SOL_MOCK_PRICE,2.14);
   }
-  fetch('https://api.coingecko.com/api/v3/simple/price?ids=solana&vs_currencies=usd&include_24hr_change=true')
-    .then(function(r){return r.json();})
-    .then(function(d){applyPrice(d.solana.usd,d.solana.usd_24h_change);})
-    .catch(function(){applyPrice(148.00,2.14);});
 }
 
 // Busca silenciosa ao carregar
