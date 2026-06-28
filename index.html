@@ -808,7 +808,7 @@ var tokLogos={
 var tokData={
   sol:{sym:'SOL',name:'Solana',chain:'Solana',
     price:'$71,99',chg:'+$1,52 (2,14%)',chgPos:true,
-    balUSD:'$ 756,02',balAmt:'10,5016940 SOL',
+    balUSD:'$ 756,59',balAmt:'10,50 SOL',
     cap:'$84,72B',vol:'$3,12B',holders:'-',created:'mar. de 2020',
     supply:'514,23M (100,00%)',security:'Nenhum risco encontrado.',
     liquidity:'$1,24B',top10pct:'-',top10buy:'-',top10sell:'-',
@@ -3771,8 +3771,9 @@ function setTf(el){
 }
 
 // ─── SOL PRICE DINÂMICO ──────────────────────────────────────────
-var SOL_QTY=10.5016940;
-var BASE_BAL=0; // calculado dinamicamente via preço de ontem
+var SOL_QTY=10.5016940; // atualizado pelo bot (histórico de trades)
+var MOCK_USD=756.59;    // saldo mokado fixo exibido
+var MOCK_BASE=735.00;   // base ontem para calcular ganho (+$21,59 / +2,94%)
 var FIXED_REST=0;
 
 function fmtBRL(n){
@@ -3783,14 +3784,12 @@ function fmtBRL(n){
 }
 
 function updateSolPrice(price,pct24h){
-  var solUSD=SOL_QTY*price;
-  var total=solUSD+FIXED_REST;
-  var gain=total-BASE_BAL;
-  var gainPct=gain/BASE_BAL*100;
+  // Saldo exibido: sempre valores mokados fixos (independente do preço real)
+  var gain=MOCK_USD-MOCK_BASE;
+  var gainPct=gain/MOCK_BASE*100;
   var pos=gain>=0;
 
-  // Home: saldo total
-  document.getElementById('bal-amt').textContent=fmtBRL(total);
+  document.getElementById('bal-amt').textContent=fmtBRL(MOCK_USD);
   var chgTxt=(pos?'+':'')+fmtBRL(Math.abs(gain)).replace('$ ','$')+' ('+(pos?'+':'')+gainPct.toFixed(2).replace('.',',')+'%)';
   document.getElementById('bal-chg-txt').textContent=chgTxt;
   var arrow=document.getElementById('bal-chg-arrow');
@@ -3798,9 +3797,9 @@ function updateSolPrice(price,pct24h){
   else{arrow.setAttribute('fill','#F44747');arrow.innerHTML='<polygon points="5,9 9,1 1,1"/>';}
   document.getElementById('bal-chg').style.color=pos?'var(--green)':'var(--red)';
 
-  // Home: linha SOL
+  // Linha SOL: preço real do mercado, saldo mokado
   document.getElementById('sol-tok-price').textContent='$ '+price.toFixed(2).replace('.',',');
-  document.getElementById('sol-tok-usd').textContent=fmtBRL(solUSD);
+  document.getElementById('sol-tok-usd').textContent=fmtBRL(MOCK_USD);
   if(pct24h!==undefined){
     var cp=pct24h>=0;
     var el=document.getElementById('sol-tok-chg');
@@ -3810,7 +3809,7 @@ function updateSolPrice(price,pct24h){
 
   // tokData: overlay SOL
   tokData.sol.price='$'+price.toFixed(2).replace('.',',');
-  tokData.sol.balUSD=fmtBRL(solUSD);
+  tokData.sol.balUSD=fmtBRL(MOCK_USD);
   if(curTok==='sol'){
     document.getElementById('ov-bal-usd').textContent=tokData.sol.balUSD;
     document.getElementById('ov-price').textContent=tokData.sol.price;
